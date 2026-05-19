@@ -1,5 +1,3 @@
-'use client';
-
 import { motion } from 'framer-motion';
 import { Globe, ShieldCheck, Cpu, ShoppingCart, Server, Code2, ChevronRight } from 'lucide-react';
 
@@ -80,10 +78,13 @@ export default function AAT360NetworkLab() {
             </p>
 
             <div className="flex flex-wrap gap-5">
-              <button className="group bg-cyan-400 hover:bg-cyan-300 text-black font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-[0_0_30px_rgba(34,211,238,0.3)] flex items-center gap-2">
+              <a
+                href="mailto:info@aat360networklab.it?subject=Richiesta Consulenza"
+                className="group bg-cyan-400 hover:bg-cyan-300 text-black font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-[0_0_30px_rgba(34,211,238,0.3)] flex items-center gap-2"
+              >
                 Richiedi Consulenza
                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition" />
-              </button>
+              </a>
 
               <button className="border border-white/10 hover:border-cyan-400/40 hover:bg-cyan-400/5 px-8 py-4 rounded-2xl transition-all duration-300 text-slate-200">
                 Scopri i Servizi
@@ -272,13 +273,19 @@ export default function AAT360NetworkLab() {
           </p>
 
           <div className="flex flex-wrap justify-center gap-5">
-            <button className="bg-cyan-400 hover:bg-cyan-300 text-black font-bold px-10 py-5 rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(34,211,238,0.25)]">
+            <a
+              href="mailto:info@aat360networklab.it?subject=Prenotazione Consulenza"
+              className="bg-cyan-400 hover:bg-cyan-300 text-black font-bold px-10 py-5 rounded-2xl transition-all duration-300 shadow-[0_0_40px_rgba(34,211,238,0.25)]"
+            >
               Prenota una Consulenza
-            </button>
+            </a>
 
-            <button className="border border-white/10 hover:border-cyan-400/40 hover:bg-cyan-400/5 px-10 py-5 rounded-2xl transition-all duration-300 text-slate-200">
+            <a
+              href="mailto:info@aat360networklab.it?subject=Contatto dal sito"
+              className="border border-white/10 hover:border-cyan-400/40 hover:bg-cyan-400/5 px-10 py-5 rounded-2xl transition-all duration-300 text-slate-200"
+            >
               Contattaci
-            </button>
+            </a>
           </div>
         </div>
       </section>
@@ -297,6 +304,7 @@ export default function AAT360NetworkLab() {
 
           <div className="text-slate-400 text-sm text-center md:text-right space-y-2">
             <p>info@aat360networklab.it</p>
+            <p>+39 000 000 0000</p>
           </div>
         </div>
       </footer>
