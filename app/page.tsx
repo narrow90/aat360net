@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { Globe, ShieldCheck, Cpu, ShoppingCart, Server, Code2, ChevronRight } from 'lucide-react';
 
@@ -304,7 +306,6 @@ export default function AAT360NetworkLab() {
 
           <div className="text-slate-400 text-sm text-center md:text-right space-y-2">
             <p>info@aat360networklab.it</p>
-            <p>+39 000 000 0000</p>
           </div>
         </div>
       </footer>
