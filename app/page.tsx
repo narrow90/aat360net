@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Globe, ShieldCheck, Cpu, ShoppingCart, Server, Code2, ChevronRight } from 'lucide-react';
+import { Globe, ShieldCheck, Cpu, ShoppingCart, Server, Code2, ChevronRight, ArrowUp } from 'lucide-react';
 
 export default function AAT360NetworkLab() {
   const services = [
@@ -291,6 +291,14 @@ export default function AAT360NetworkLab() {
           </div>
         </div>
       </section>
+
+      {/* Scroll To Top */}
+      <button
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-8 right-8 z-50 bg-cyan-400 hover:bg-cyan-300 text-black p-4 rounded-full shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-all duration-300 hover:scale-110"
+      >
+        <ArrowUp className="w-6 h-6" />
+      </button>
 
       {/* Footer */}
       <footer className="border-t border-white/5 bg-black/40 backdrop-blur-xl py-10">
