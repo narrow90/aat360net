@@ -296,7 +296,7 @@ export default function AAT360NetworkLab() {
       <button
   onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
   className={`fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50 bg-cyan-400 hover:bg-cyan-300 text-black p-3 sm:p-4 rounded-full shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-all duration-300 hover:scale-110 ${
-    typeof window !== 'undefined' && window.scrollY > 500
+    typeof window !== 'undefined' && window.scrollY > 150
       ? 'opacity-100 translate-y-0'
       : 'opacity-0 translate-y-10 pointer-events-none'
   }`}
@@ -318,7 +318,6 @@ export default function AAT360NetworkLab() {
 
           <div className="text-slate-400 text-sm text-center md:text-right space-y-2">
             <p>info@aat360networklab.it</p>
-            <p>+39 000 000 0000</p>
           </div>
         </div>
       </footer>
