@@ -53,8 +53,8 @@ export default function AAT360NetworkLab() {
       </header>
 
       {/* Hero */}
-      <section className="relative py-28 lg:py-36">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 items-center relative z-10">
+      <section className="relative py-20 lg:py-36">
+        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
@@ -65,7 +65,7 @@ export default function AAT360NetworkLab() {
               Digital Innovation & Enterprise Solutions
             </div>
 
-            <h2 className="text-6xl lg:text-7xl font-black leading-tight tracking-tight mb-8">
+            <h2 className="text-4xl sm:text-5xl lg:text-7xl font-black leading-tight tracking-tight mb-8">
               Trasformiamo
               <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
                 il tuo business
@@ -73,13 +73,13 @@ export default function AAT360NetworkLab() {
               nel digitale.
             </h2>
 
-            <p className="text-slate-300 text-xl leading-relaxed max-w-2xl mb-10">
+            <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mb-10">
               AAT 360 NetworkLab sviluppa ecosistemi digitali ad alte prestazioni:
               siti web professionali, software gestionali, portali enterprise,
               e-commerce avanzati e infrastrutture IT affidabili.
             </p>
 
-            <div className="flex flex-wrap gap-5">
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
               <a
                 href="mailto:info@aat360networklab.it?subject=Richiesta Consulenza"
                 className="group bg-cyan-400 hover:bg-cyan-300 text-black font-semibold px-8 py-4 rounded-2xl transition-all duration-300 shadow-[0_0_30px_rgba(34,211,238,0.3)] flex items-center gap-2"
@@ -104,7 +104,7 @@ export default function AAT360NetworkLab() {
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-3xl blur opacity-30" />
 
             <div className="relative bg-white/5 border border-white/10 backdrop-blur-2xl rounded-3xl p-8 shadow-2xl">
-              <div className="grid grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {[
                   {
                     title: 'Cloud Systems',
@@ -147,7 +147,7 @@ export default function AAT360NetworkLab() {
             <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm mb-4">
               Soluzioni Digitali
             </p>
-            <h2 className="text-5xl font-black leading-tight mb-6">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black leading-tight mb-6">
               Servizi tecnologici progettati per la crescita aziendale
             </h2>
             <p className="text-slate-400 text-lg leading-relaxed">
@@ -156,7 +156,7 @@ export default function AAT360NetworkLab() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
             {services.map((service, index) => (
               <motion.div
                 key={index}
@@ -206,7 +206,7 @@ export default function AAT360NetworkLab() {
               capaci di accelerare la trasformazione digitale delle imprese.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div className="rounded-3xl border border-white/10 bg-[#0d1328] p-8">
                 <h3 className="text-5xl font-black text-cyan-400 mb-3">360°</h3>
                 <p className="text-slate-400">Servizi IT integrati</p>
@@ -262,7 +262,7 @@ export default function AAT360NetworkLab() {
             Start Your Project
           </p>
 
-          <h2 className="text-6xl font-black leading-tight mb-8">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight mb-8">
             Costruiamo insieme
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
               la tua infrastruttura digitale
@@ -294,11 +294,15 @@ export default function AAT360NetworkLab() {
 
       {/* Scroll To Top */}
       <button
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        className="fixed bottom-8 right-8 z-50 bg-cyan-400 hover:bg-cyan-300 text-black p-4 rounded-full shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-all duration-300 hover:scale-110"
-      >
-        <ArrowUp className="w-6 h-6" />
-      </button>
+  onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+  className={`fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-50 bg-cyan-400 hover:bg-cyan-300 text-black p-3 sm:p-4 rounded-full shadow-[0_0_30px_rgba(34,211,238,0.35)] transition-all duration-300 hover:scale-110 ${
+    typeof window !== 'undefined' && window.scrollY > 500
+      ? 'opacity-100 translate-y-0'
+      : 'opacity-0 translate-y-10 pointer-events-none'
+  }`}
+>
+  <ArrowUp className="w-6 h-6" />
+</button>
 
       {/* Footer */}
       <footer className="border-t border-white/5 bg-black/40 backdrop-blur-xl py-10">
@@ -314,9 +318,13 @@ export default function AAT360NetworkLab() {
 
           <div className="text-slate-400 text-sm text-center md:text-right space-y-2">
             <p>info@aat360networklab.it</p>
+            <p>+39 000 000 0000</p>
           </div>
         </div>
       </footer>
     </div>
   );
 }
+
+
+
