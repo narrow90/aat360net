@@ -10,14 +10,20 @@ import {
   ChevronRight,
   LayoutDashboard,
   LayoutTemplate,
+  Mail,
   Menu,
+  MessageCircle,
   ShoppingBag,
   Sparkles,
-  Store,
   Workflow,
   X,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+
+const WHATSAPP_URL =
+  "https://wa.me/393793897635?text=Ciao%20AAT%20360%20NetworkLab%2C%20vorrei%20richiedere%20un%20preventivo.";
+
+const EMAIL_URL =
+  "mailto:info@aat360networklab.it?subject=Richiesta%20preventivo%20AAT%20360%20NetworkLab&body=Ciao%2C%20vorrei%20ricevere%20informazioni%20per%20un%20nuovo%20progetto.";
 
 const services = [
   {
@@ -90,7 +96,13 @@ const process = [
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 24, mass: 0.25 });
+
+  const progress = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 24,
+    mass: 0.25,
+  });
+
   const heroY = useTransform(scrollYProgress, [0, 0.35], [0, 110]);
   const glowY = useTransform(scrollYProgress, [0, 0.5], [0, -160]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0.7]);
@@ -129,9 +141,14 @@ export default function Home() {
             </a>
           </nav>
 
-          <Button className="hidden h-11 rounded-2xl bg-[#087cff] px-6 font-bold shadow-lg shadow-blue-600/20 hover:bg-[#0067df] sm:flex">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden h-11 items-center justify-center rounded-2xl bg-[#087cff] px-6 text-sm font-bold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#0067df] sm:inline-flex"
+          >
             Richiedi preventivo
-          </Button>
+          </a>
 
           <button
             type="button"
@@ -140,7 +157,11 @@ export default function Home() {
             aria-label="Apri menu"
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
 
@@ -160,11 +181,22 @@ export default function Home() {
                   key={label}
                   href={href}
                   onClick={closeMenu}
-                  className="rounded-2xl border border-white/8 bg-white/5 px-5 py-4 font-bold"
+                  className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 font-bold"
                 >
                   {label}
                 </a>
               ))}
+
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={closeMenu}
+                className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-[#087cff] px-5 py-4 font-bold text-white"
+              >
+                <MessageCircle className="h-4 w-4" />
+                Richiedi preventivo
+              </a>
             </nav>
           </motion.div>
         )}
@@ -181,6 +213,7 @@ export default function Home() {
           style={{ y: glowY }}
           className="absolute -right-24 top-24 h-[420px] w-[420px] rounded-full border border-[#1598ff]/20 sm:h-[620px] sm:w-[620px]"
         />
+
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 45, repeat: Infinity, ease: "linear" }}
@@ -205,20 +238,28 @@ export default function Home() {
             </h1>
 
             <p className="mt-7 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-              Progettiamo siti vetrina, e-commerce e gestionali capaci di comunicare meglio, vendere online e semplificare i processi aziendali.
+              Progettiamo siti vetrina, e-commerce e gestionali capaci di
+              comunicare meglio, vendere online e semplificare i processi
+              aziendali.
             </p>
 
             <div className="mt-8 grid gap-3 sm:flex">
-              <a href="#contatti"><Button className="h-14 w-full rounded-2xl bg-[#087cff] px-7 text-base font-bold shadow-xl shadow-blue-700/25 transition hover:-translate-y-0.5 hover:bg-[#0067df] sm:w-auto">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex h-14 w-full items-center justify-center rounded-2xl bg-[#087cff] px-7 text-base font-bold text-white shadow-xl shadow-blue-700/25 transition hover:-translate-y-0.5 hover:bg-[#0067df] sm:w-auto"
+              >
                 Inizia un progetto
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button></a>
-              <a href="#servizi"><Button
-                variant="outline"
-                className="h-14 w-full rounded-2xl border-white/15 bg-white/5 px-7 text-base font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
+              </a>
+
+              <a
+                href="#servizi"
+                className="inline-flex h-14 w-full items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-7 text-base font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
                 Esplora i servizi
-              </Button></a>
+              </a>
             </div>
 
             <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-slate-400">
@@ -253,6 +294,7 @@ export default function Home() {
                       Tre soluzioni. Un’unica direzione digitale.
                     </h2>
                   </div>
+
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#087cff] text-white shadow-lg shadow-blue-500/25">
                     <LayoutDashboard className="h-5 w-5" />
                   </div>
@@ -284,12 +326,14 @@ export default function Home() {
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white text-[#087cff] shadow-sm sm:h-12 sm:w-12">
                         <Icon className="h-5 w-5" />
                       </div>
+
                       <div>
                         <p className="font-black">{title}</p>
                         <p className="mt-1 text-xs text-slate-500 sm:text-sm">
                           {text}
                         </p>
                       </div>
+
                       <span className="text-xs font-black text-[#087cff]/50">
                         0{index + 1}
                       </span>
@@ -306,6 +350,7 @@ export default function Home() {
                       Soluzioni costruite sul tuo business
                     </p>
                   </div>
+
                   <ChevronRight className="h-5 w-5 text-[#51b4ff]" />
                 </div>
               </div>
@@ -314,7 +359,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative border-y border-white/[0.08] bg-[#04182f] px-4 py-8 sm:px-6 lg:px-8">
+      <section className="relative border-y border-white/10 bg-[#04182f] px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-[1380px] gap-3 sm:grid-cols-3">
           {[
             ["01", "Identità", "Design coerente con il brand"],
@@ -324,12 +369,15 @@ export default function Home() {
             <motion.div
               key={number}
               whileHover={{ y: -4 }}
-              className="rounded-2xl border border-white/[0.08] bg-white/[0.045] p-5 backdrop-blur-xl"
+              className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl"
             >
               <div className="flex items-center gap-3">
-                <span className="text-xs font-black text-[#68c2ff]">{number}</span>
+                <span className="text-xs font-black text-[#68c2ff]">
+                  {number}
+                </span>
                 <span className="h-px flex-1 bg-gradient-to-r from-[#168eff]/60 to-transparent" />
               </div>
+
               <p className="mt-5 text-lg font-black">{title}</p>
               <p className="mt-1 text-sm text-slate-400">{text}</p>
             </motion.div>
@@ -337,26 +385,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-white/8 bg-[#05182f] py-5">
+      <section className="border-y border-white/10 bg-[#05182f] py-5">
         <div className="overflow-hidden">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 22, repeat: Infinity, ease: "linear" }}
             className="flex w-max items-center gap-12 whitespace-nowrap px-6 text-sm font-black uppercase tracking-[0.22em] text-[#8fcfff]"
           >
-            {[...Array(2)].flatMap(() => [
-              "Siti vetrina",
-              "E-commerce",
-              "Gestionali",
-              "Mobile-first",
-              "Design su misura",
-              "Performance",
-            ]).map((item, index) => (
-              <div key={`${item}-${index}`} className="flex items-center gap-12">
-                <span>{item}</span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#087cff]" />
-              </div>
-            ))}
+            {[...Array(2)]
+              .flatMap(() => [
+                "Siti vetrina",
+                "E-commerce",
+                "Gestionali",
+                "Mobile-first",
+                "Design su misura",
+                "Performance",
+              ])
+              .map((item, index) => (
+                <div key={`${item}-${index}`} className="flex items-center gap-12">
+                  <span>{item}</span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-[#087cff]" />
+                </div>
+              ))}
           </motion.div>
         </div>
       </section>
@@ -373,10 +423,12 @@ export default function Home() {
               <p className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-[#087cff] sm:text-sm">
                 Soluzioni
               </p>
+
               <h2 className="text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
                 Specializzazione, non servizi generici.
               </h2>
             </div>
+
             <p className="max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 lg:justify-self-end">
               Non offriamo servizi generici. Progettiamo strumenti digitali
               mirati a comunicare meglio, vendere online e semplificare il
@@ -386,15 +438,17 @@ export default function Home() {
 
           <div className="grid gap-5">
             {services.map(
-              ({
-                number,
-                eyebrow,
-                title,
-                description,
-                icon: Icon,
-                features,
-              },
-              index) => (
+              (
+                {
+                  number,
+                  eyebrow,
+                  title,
+                  description,
+                  icon: Icon,
+                  features,
+                },
+                index
+              ) => (
                 <motion.article
                   key={title}
                   initial={{ opacity: 0, y: 35 }}
@@ -403,13 +457,14 @@ export default function Home() {
                   transition={{ duration: 0.55, delay: index * 0.08 }}
                   className="group relative overflow-hidden rounded-[2rem] border border-[#d8e6f8] bg-white shadow-[0_20px_70px_rgba(15,65,130,0.06)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,65,130,0.12)] sm:rounded-[2.6rem]"
                 >
-                  <div className="absolute right-[-100px] top-[-120px] h-72 w-72 rounded-full bg-[#087cff]/6 blur-2xl transition duration-500 group-hover:bg-[#087cff]/12" />
+                  <div className="absolute right-[-100px] top-[-120px] h-72 w-72 rounded-full bg-[#087cff]/10 blur-2xl transition duration-500 group-hover:bg-[#087cff]/15" />
 
                   <div className="relative grid gap-7 p-6 sm:p-9 lg:grid-cols-[110px_0.9fr_1.1fr] lg:items-center lg:p-11">
                     <div className="flex items-center justify-between lg:block">
                       <span className="text-4xl font-black text-[#087cff]/25 transition group-hover:text-[#087cff]">
                         {number}
                       </span>
+
                       <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#eef6ff] text-[#087cff] transition group-hover:bg-[#087cff] group-hover:text-white lg:mt-10">
                         <Icon className="h-6 w-6" />
                       </div>
@@ -419,9 +474,11 @@ export default function Home() {
                       <p className="text-sm font-black uppercase tracking-[0.18em] text-[#087cff]">
                         {eyebrow}
                       </p>
+
                       <h3 className="mt-2 text-3xl font-black tracking-tight sm:text-4xl">
                         {title}
                       </h3>
+
                       <p className="mt-4 max-w-xl leading-7 text-slate-600">
                         {description}
                       </p>
@@ -436,6 +493,7 @@ export default function Home() {
                           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white text-[#087cff] shadow-sm">
                             <Check className="h-4 w-4" />
                           </span>
+
                           <span className="text-sm font-bold">{feature}</span>
                         </div>
                       ))}
@@ -452,19 +510,21 @@ export default function Home() {
         id="metodo"
         className="relative overflow-hidden bg-white px-4 py-16 text-[#071a33] sm:px-6 sm:py-24 lg:px-8 lg:py-32"
       >
-        <div className="absolute right-[-15%] top-[-20%] h-[520px] w-[520px] rounded-full bg-[#178eff]/8 blur-3xl" />
+        <div className="absolute right-[-15%] top-[-20%] h-[520px] w-[520px] rounded-full bg-[#178eff]/10 blur-3xl" />
 
         <div className="relative mx-auto grid max-w-[1380px] gap-12 lg:grid-cols-[0.72fr_1.28fr]">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <p className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-[#087cff] sm:text-sm">
               Metodo
             </p>
+
             <h2 className="text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
               Un processo chiaro, dall’idea al lancio.
             </h2>
+
             <p className="mt-6 max-w-md text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-              Ogni fase è pensata per trasformare l’idea iniziale in un
-              prodotto digitale concreto, coerente e pronto a crescere.
+              Ogni fase è pensata per trasformare l’idea iniziale in un prodotto
+              digitale concreto, coerente e pronto a crescere.
             </p>
           </div>
 
@@ -484,6 +544,7 @@ export default function Home() {
                   <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#087cff] text-sm font-black text-white shadow-lg shadow-blue-500/20">
                     {step.number}
                   </div>
+
                   <div>
                     <h3 className="text-2xl font-black">{step.title}</h3>
                     <p className="mt-2 leading-7 text-slate-600">{step.text}</p>
@@ -504,10 +565,12 @@ export default function Home() {
             <p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-[#75c6ff] sm:text-sm">
               Il risultato
             </p>
+
             <h2 className="max-w-3xl text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
               Un progetto digitale pensato per produrre valore.
             </h2>
           </div>
+
           <div className="grid gap-4">
             {[
               "Comunicazione più efficace",
@@ -534,13 +597,16 @@ export default function Home() {
           <div className="relative overflow-hidden p-7 text-white sm:p-10 lg:p-14">
             <div className="absolute -bottom-28 -right-20 h-80 w-80 rounded-full border border-white/20" />
             <div className="absolute -bottom-20 -right-12 h-60 w-60 rounded-full border border-white/15" />
+
             <div className="relative">
               <p className="mb-4 text-xs font-black uppercase tracking-[0.28em] text-blue-100 sm:text-sm">
                 Parliamo del tuo progetto
               </p>
+
               <h2 className="max-w-3xl text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
                 Sito vetrina, e-commerce o gestionale?
               </h2>
+
               <p className="mt-6 max-w-xl leading-7 text-blue-50">
                 Raccontaci cosa vuoi realizzare. Ti aiutiamo a definire una
                 soluzione chiara, professionale e adatta alla tua attività.
@@ -549,16 +615,35 @@ export default function Home() {
           </div>
 
           <div className="flex flex-col justify-center gap-3 bg-white p-7 sm:p-10 lg:p-14">
-            <Button className="h-14 rounded-2xl bg-[#087cff] text-base font-bold hover:bg-[#0067df]">
-              Richiedi un preventivo
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              className="h-14 rounded-2xl border-[#d8e6f8] text-base font-bold text-[#071a33] hover:bg-[#eef6ff]"
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl bg-[#087cff] px-6 text-base font-bold text-white transition hover:-translate-y-0.5 hover:bg-[#0067df]"
             >
-              Contattaci
-            </Button>
+              <MessageCircle className="h-5 w-5" />
+              Richiedi un preventivo
+              <ArrowRight className="h-4 w-4" />
+            </a>
+
+            <a
+              href={EMAIL_URL}
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-2xl border border-[#d8e6f8] px-6 text-base font-bold text-[#071a33] transition hover:-translate-y-0.5 hover:bg-[#eef6ff]"
+            >
+              <Mail className="h-5 w-5 text-[#087cff]" />
+              Contattaci via email
+            </a>
+
+            <div className="mt-4 rounded-2xl bg-[#f6f9fe] p-4 text-sm text-slate-600">
+              <p>
+                <strong className="text-[#071a33]">WhatsApp:</strong>{" "}
+                +39 379 389 7635
+              </p>
+              <p className="mt-1 break-all">
+                <strong className="text-[#071a33]">Email:</strong>{" "}
+                info@aat360networklab.it
+              </p>
+            </div>
           </div>
         </div>
       </section>
