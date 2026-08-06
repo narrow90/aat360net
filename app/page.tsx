@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import {
   ArrowRight,
   BarChart3,
@@ -90,8 +90,10 @@ const process = [
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 110, damping: 24, mass: 0.25 });
   const heroY = useTransform(scrollYProgress, [0, 0.35], [0, 110]);
   const glowY = useTransform(scrollYProgress, [0, 0.5], [0, -160]);
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.26], [1, 0.7]);
 
   const closeMenu = () => setMenuOpen(false);
 
@@ -99,7 +101,7 @@ export default function Home() {
     <main className="min-h-screen overflow-hidden bg-[#04152a] text-white">
       <motion.div
         className="fixed left-0 top-0 z-[70] h-[3px] origin-left bg-gradient-to-r from-[#00a7ff] via-[#006bff] to-[#163ccf]"
-        style={{ scaleX: scrollYProgress }}
+        style={{ scaleX: progress }}
       />
 
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#04152a]/78 backdrop-blur-2xl">
@@ -187,6 +189,7 @@ export default function Home() {
 
         <div className="relative mx-auto grid w-full max-w-[1380px] gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <motion.div
+            style={{ opacity: heroOpacity }}
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75 }}
@@ -197,30 +200,25 @@ export default function Home() {
             </div>
 
             <h1 className="max-w-4xl text-[3.2rem] font-black leading-[0.9] tracking-[-0.065em] sm:text-6xl md:text-7xl lg:text-[5.8rem] xl:text-[6.8rem]">
-              Il digitale che
-              <span className="block bg-gradient-to-r from-[#36b3ff] via-[#087cff] to-[#3558ff] bg-clip-text text-transparent">
-                presenta, vende
-              </span>
-              e organizza.
+              Il digitale
+              <span className="block text-white">che crea valore.</span>
             </h1>
 
             <p className="mt-7 max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
-              AAT 360 NetworkLab sviluppa siti vetrina, e-commerce e gestionali
-              personalizzati per trasformare idee e processi in strumenti
-              digitali concreti.
+              Progettiamo siti vetrina, e-commerce e gestionali capaci di comunicare meglio, vendere online e semplificare i processi aziendali.
             </p>
 
             <div className="mt-8 grid gap-3 sm:flex">
-              <Button className="h-14 rounded-2xl bg-[#087cff] px-7 text-base font-bold shadow-xl shadow-blue-700/25 hover:bg-[#0067df]">
+              <a href="#contatti"><Button className="h-14 w-full rounded-2xl bg-[#087cff] px-7 text-base font-bold shadow-xl shadow-blue-700/25 transition hover:-translate-y-0.5 hover:bg-[#0067df] sm:w-auto">
                 Inizia un progetto
                 <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button
+              </Button></a>
+              <a href="#servizi"><Button
                 variant="outline"
-                className="h-14 rounded-2xl border-white/15 bg-white/5 px-7 text-base font-bold text-white hover:bg-white/10"
+                className="h-14 w-full rounded-2xl border-white/15 bg-white/5 px-7 text-base font-bold text-white transition hover:-translate-y-0.5 hover:bg-white/10 sm:w-auto"
               >
                 Esplora i servizi
-              </Button>
+              </Button></a>
             </div>
 
             <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-slate-400">
@@ -242,7 +240,7 @@ export default function Home() {
           >
             <div className="absolute -inset-8 rounded-[3rem] bg-[#006bff]/20 blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.08] p-3 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:rounded-[2.8rem] sm:p-5">
+            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.08] p-3 shadow-[0_40px_120px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition duration-500 hover:-translate-y-1 sm:rounded-[2.8rem] sm:p-5">
               <div className="relative overflow-hidden rounded-[1.6rem] bg-white p-5 text-[#071a33] sm:rounded-[2.3rem] sm:p-7">
                 <div className="absolute right-[-70px] top-[-80px] h-56 w-56 rounded-full bg-[#138eff]/12 blur-2xl" />
 
@@ -252,7 +250,7 @@ export default function Home() {
                       AAT 360 Digital Core
                     </p>
                     <h2 className="mt-3 max-w-lg text-2xl font-black leading-tight sm:text-4xl">
-                      Tre strumenti digitali. Una strategia coerente.
+                      Tre soluzioni. Un’unica direzione digitale.
                     </h2>
                   </div>
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#087cff] text-white shadow-lg shadow-blue-500/25">
@@ -316,6 +314,29 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="relative border-y border-white/[0.08] bg-[#04182f] px-4 py-8 sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-[1380px] gap-3 sm:grid-cols-3">
+          {[
+            ["01", "Identità", "Design coerente con il brand"],
+            ["02", "Performance", "Esperienze rapide e responsive"],
+            ["03", "Scalabilità", "Soluzioni pronte a crescere"],
+          ].map(([number, title, text]) => (
+            <motion.div
+              key={number}
+              whileHover={{ y: -4 }}
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.045] p-5 backdrop-blur-xl"
+            >
+              <div className="flex items-center gap-3">
+                <span className="text-xs font-black text-[#68c2ff]">{number}</span>
+                <span className="h-px flex-1 bg-gradient-to-r from-[#168eff]/60 to-transparent" />
+              </div>
+              <p className="mt-5 text-lg font-black">{title}</p>
+              <p className="mt-1 text-sm text-slate-400">{text}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       <section className="border-y border-white/8 bg-[#05182f] py-5">
         <div className="overflow-hidden">
           <motion.div
@@ -353,7 +374,7 @@ export default function Home() {
                 Soluzioni
               </p>
               <h2 className="text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-                Specializzati in tre aree strategiche.
+                Specializzazione, non servizi generici.
               </h2>
             </div>
             <p className="max-w-xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8 lg:justify-self-end">
@@ -380,7 +401,7 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.55, delay: index * 0.08 }}
-                  className="group relative overflow-hidden rounded-[2rem] border border-[#d8e6f8] bg-white shadow-[0_20px_70px_rgba(15,65,130,0.06)] sm:rounded-[2.6rem]"
+                  className="group relative overflow-hidden rounded-[2rem] border border-[#d8e6f8] bg-white shadow-[0_20px_70px_rgba(15,65,130,0.06)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,65,130,0.12)] sm:rounded-[2.6rem]"
                 >
                   <div className="absolute right-[-100px] top-[-120px] h-72 w-72 rounded-full bg-[#087cff]/6 blur-2xl transition duration-500 group-hover:bg-[#087cff]/12" />
 
@@ -439,7 +460,7 @@ export default function Home() {
               Metodo
             </p>
             <h2 className="text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Un percorso chiaro, senza complicazioni.
+              Un processo chiaro, dall’idea al lancio.
             </h2>
             <p className="mt-6 max-w-md text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Ogni fase è pensata per trasformare l’idea iniziale in un
@@ -484,7 +505,7 @@ export default function Home() {
               Il risultato
             </p>
             <h2 className="max-w-3xl text-4xl font-black leading-[0.95] tracking-[-0.045em] sm:text-5xl md:text-6xl">
-              Un progetto digitale pensato per lavorare davvero.
+              Un progetto digitale pensato per produrre valore.
             </h2>
           </div>
           <div className="grid gap-4">
