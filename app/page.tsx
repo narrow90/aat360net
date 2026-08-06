@@ -135,16 +135,16 @@ export default function Home() {
           </a>
 
           <nav className="hidden items-center gap-8 text-sm font-bold text-slate-600 md:flex">
-            <a href="#servizi" className="transition hover:text-[#087cff]">
+            <a href="#servizi" className="relative transition hover:text-[#087cff] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#087cff] after:transition-all after:duration-300 hover:after:w-full">
               Servizi
             </a>
-            <a href="#vantaggi" className="transition hover:text-[#087cff]">
+            <a href="#vantaggi" className="relative transition hover:text-[#087cff] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#087cff] after:transition-all after:duration-300 hover:after:w-full">
               Perché noi
             </a>
-            <a href="#metodo" className="transition hover:text-[#087cff]">
+            <a href="#metodo" className="relative transition hover:text-[#087cff] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#087cff] after:transition-all after:duration-300 hover:after:w-full">
               Metodo
             </a>
-            <a href="#contatti" className="transition hover:text-[#087cff]">
+            <a href="#contatti" className="relative transition hover:text-[#087cff] after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#087cff] after:transition-all after:duration-300 hover:after:w-full">
               Contatti
             </a>
           </nav>
@@ -153,7 +153,7 @@ export default function Home() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden h-11 items-center justify-center gap-2 rounded-xl bg-[#087cff] px-5 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#0067df] sm:inline-flex"
+            className="group hidden h-11 items-center justify-center gap-2 rounded-xl bg-[#087cff] px-5 text-sm font-extrabold text-white shadow-lg shadow-blue-600/20 transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#0067df] hover:shadow-xl hover:shadow-blue-600/30 sm:inline-flex"
           >
             <MessageCircle className="h-4 w-4" />
             Preventivo gratuito
@@ -247,15 +247,15 @@ export default function Home() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-[#087cff] px-7 text-base font-extrabold text-white shadow-xl shadow-blue-600/20 transition hover:-translate-y-0.5 hover:bg-[#0067df]"
+                className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-[#087cff] px-7 text-base font-extrabold text-white shadow-xl shadow-blue-600/20 transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#0067df] hover:shadow-2xl hover:shadow-blue-600/30"
               >
                 Richiedi un preventivo
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
 
               <a
                 href="#servizi"
-                className="inline-flex h-14 items-center justify-center rounded-xl border border-[#cfdff5] bg-white px-7 text-base font-extrabold text-[#06172d] transition hover:bg-[#eef6ff]"
+                className="inline-flex h-14 items-center justify-center rounded-xl border border-[#cfdff5] bg-white px-7 text-base font-extrabold text-[#06172d] transition duration-300 hover:-translate-y-1 hover:border-[#087cff]/40 hover:bg-[#eef6ff] hover:shadow-lg"
               >
                 Scopri i servizi
               </a>
@@ -286,7 +286,7 @@ export default function Home() {
           >
             <div className="absolute -inset-8 rounded-[3rem] bg-[#087cff]/12 blur-3xl" />
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-[#d8e6f8] bg-white p-4 shadow-[0_35px_90px_rgba(17,67,130,0.14)] sm:rounded-[2.5rem] sm:p-5">
+            <div className="group relative overflow-hidden rounded-[2rem] border border-[#d8e6f8] bg-white p-4 shadow-[0_35px_90px_rgba(17,67,130,0.14)] transition duration-500 hover:-translate-y-2 hover:rotate-[0.3deg] hover:shadow-[0_45px_110px_rgba(17,67,130,0.20)] sm:rounded-[2.5rem] sm:p-5">
               <div className="rounded-[1.6rem] bg-[#06172d] p-6 text-white sm:rounded-[2rem] sm:p-8">
                 <p className="text-xs font-black uppercase tracking-[0.24em] text-[#79c8ff]">
                   AAT 360 NetworkLab
@@ -304,7 +304,7 @@ export default function Home() {
                     <motion.div
                       key={title}
                       whileHover={{ x: 5 }}
-                      className="flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/[0.06] p-4"
+                      className="flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/[0.06] p-4 transition duration-300 hover:translate-x-1 hover:border-[#79c8ff]/30 hover:bg-white/[0.10]"
                     >
                       <div>
                         <p className="font-black">{title}</p>
@@ -331,7 +331,7 @@ export default function Home() {
           ].map(([title, text]) => (
             <div
               key={title}
-              className="rounded-xl bg-[#f8fbff] px-5 py-4"
+              className="group rounded-xl bg-[#f8fbff] px-5 py-4 transition duration-300 hover:-translate-y-1 hover:bg-white hover:shadow-lg"
             >
               <p className="font-black text-[#06172d]">{title}</p>
               <p className="mt-1 text-sm text-slate-500">{text}</p>
@@ -365,11 +365,11 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.25 }}
                   transition={{ duration: 0.5, delay: index * 0.08 }}
-                  className="group overflow-hidden rounded-[2rem] border border-[#dce8f8] bg-[#f8fbff] transition duration-500 hover:-translate-y-2 hover:bg-white hover:shadow-[0_25px_80px_rgba(17,67,130,0.12)]"
+                  className="group overflow-hidden rounded-[2rem] border border-[#dce8f8] bg-[#f8fbff] transition duration-500 hover:-translate-y-3 hover:rotate-[0.25deg] hover:border-[#087cff]/30 hover:bg-white hover:shadow-[0_30px_90px_rgba(17,67,130,0.16)]"
                 >
                   <div className="border-b border-[#dce8f8] p-6 sm:p-8">
                     <div className="flex items-center justify-between">
-                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#087cff] shadow-sm transition group-hover:bg-[#087cff] group-hover:text-white">
+                      <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-white text-[#087cff] shadow-sm transition duration-500 group-hover:rotate-6 group-hover:scale-110 group-hover:bg-[#087cff] group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/20">
                         <Icon className="h-6 w-6" />
                       </div>
                       <span className="text-sm font-black text-[#087cff]/50">
@@ -392,7 +392,7 @@ export default function Home() {
                     {service.points.map((point) => (
                       <div
                         key={point}
-                        className="flex items-center gap-3 rounded-xl bg-white p-3"
+                        className="flex items-center gap-3 rounded-xl bg-white p-3 transition duration-300 group-hover:translate-x-1 group-hover:bg-[#f0f6ff]"
                       >
                         <CheckCircle2 className="h-4 w-4 shrink-0 text-[#087cff]" />
                         <span className="text-sm font-bold">{point}</span>
@@ -437,7 +437,7 @@ export default function Home() {
               <motion.div
                 key={number}
                 whileHover={{ y: -4 }}
-                className="rounded-[1.7rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl"
+                className="group rounded-[1.7rem] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-xl transition duration-300 hover:-translate-y-2 hover:border-[#79c8ff]/30 hover:bg-white/[0.09] hover:shadow-xl hover:shadow-black/10"
               >
                 <p className="text-sm font-black text-[#79c8ff]">{number}</p>
                 <h3 className="mt-6 text-xl font-black">{title}</h3>
@@ -470,9 +470,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.45, delay: index * 0.08 }}
-                className="rounded-[1.7rem] border border-[#dce8f8] bg-white p-6"
+                className="group rounded-[1.7rem] border border-[#dce8f8] bg-white p-6 transition duration-300 hover:-translate-y-2 hover:border-[#087cff]/30 hover:shadow-xl hover:shadow-blue-100/70"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#087cff] text-sm font-black text-white">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#087cff] text-sm font-black text-white transition duration-300 group-hover:rotate-6 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/30">
                   {step.number}
                 </div>
                 <h3 className="mt-8 text-2xl font-black text-[#06172d]">
@@ -513,16 +513,16 @@ export default function Home() {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-[#087cff] px-6 text-base font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#0067df]"
+              className="group inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-[#087cff] px-6 text-base font-extrabold text-white transition duration-300 hover:-translate-y-1 hover:scale-[1.02] hover:bg-[#0067df] hover:shadow-xl hover:shadow-blue-500/25"
             >
               <MessageCircle className="h-5 w-5" />
               Richiedi un preventivo
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
             </a>
 
             <a
               href={EMAIL_URL}
-              className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-[#d8e6f8] px-6 text-base font-extrabold text-[#071a33] transition hover:bg-[#eef6ff]"
+              className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-[#d8e6f8] px-6 text-base font-extrabold text-[#071a33] transition duration-300 hover:-translate-y-1 hover:border-[#087cff]/40 hover:bg-[#eef6ff] hover:shadow-lg"
             >
               <Mail className="h-5 w-5 text-[#087cff]" />
               Contattaci via email
