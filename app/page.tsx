@@ -211,7 +211,25 @@ function Counter({
 
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [interactiveBackground, setInteractiveBackground] = useState(false);
   const { scrollYProgress } = useScroll();
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      "(hover: hover) and (pointer: fine) and (min-width: 768px)"
+    );
+
+    const updateInteractionMode = () => {
+      setInteractiveBackground(mediaQuery.matches);
+    };
+
+    updateInteractionMode();
+    mediaQuery.addEventListener("change", updateInteractionMode);
+
+    return () => {
+      mediaQuery.removeEventListener("change", updateInteractionMode);
+    };
+  }, []);
 
   const progress = useSpring(scrollYProgress, {
     stiffness: 110,
@@ -239,8 +257,19 @@ export default function Home() {
     transparent 72%
   )`;
 
-  const gridX = useTransform(smoothX, [0, 1600], [-14, 14]);
-  const gridY = useTransform(smoothY, [0, 1000], [-10, 10]);
+  const gridX = useTransform(smoothX, [0, 1600], [-16, 16]);
+  const gridY = useTransform(smoothY, [0, 1000], [-12, 12]);
+
+  const shapeOneX = useTransform(smoothX, [0, 1600], [-24, 24]);
+  const shapeOneY = useTransform(smoothY, [0, 1000], [-18, 18]);
+
+  const shapeTwoX = useTransform(smoothX, [0, 1600], [30, -30]);
+  const shapeTwoY = useTransform(smoothY, [0, 1000], [22, -22]);
+  const shapeTwoRotate = useTransform(smoothX, [0, 1600], [-10, 10]);
+
+  const shapeThreeX = useTransform(smoothX, [0, 1600], [-14, 14]);
+  const shapeThreeY = useTransform(smoothY, [0, 1000], [20, -20]);
+
   const mockupY = useTransform(scrollYProgress, [0, 0.32], [0, 110]);
   const orbY = useTransform(scrollYProgress, [0, 0.55], [0, -170]);
 
@@ -248,10 +277,12 @@ export default function Home() {
     <main
       className="relative min-h-screen overflow-hidden bg-[#031326] text-white"
       onMouseMove={(event) => {
+        if (!interactiveBackground) return;
         mouseX.set(event.clientX);
         mouseY.set(event.clientY);
       }}
       onMouseLeave={() => {
+        if (!interactiveBackground) return;
         mouseX.set(-500);
         mouseY.set(-500);
       }}
@@ -261,23 +292,49 @@ export default function Home() {
         className="fixed left-0 top-0 z-[90] h-[3px] w-full origin-left bg-gradient-to-r from-[#2bb5ff] via-[#087cff] to-[#2442dc]"
       />
 
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-0 z-[1] hidden md:block"
-        style={{ background: spotlight }}
-      />
+      {interactiveBackground && (
+        <>
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 z-[1]"
+            style={{ background: spotlight }}
+          />
 
-      <motion.div
-        aria-hidden="true"
-        className="pointer-events-none fixed inset-[-30px] z-0 hidden opacity-[0.035] md:block"
-        style={{
-          x: gridX,
-          y: gridY,
-          backgroundImage:
-            "linear-gradient(to right, #087cff 1px, transparent 1px), linear-gradient(to bottom, #087cff 1px, transparent 1px)",
-          backgroundSize: "92px 92px",
-        }}
-      />
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-[-40px] z-0 opacity-[0.04]"
+            style={{
+              x: gridX,
+              y: gridY,
+              backgroundImage:
+                "linear-gradient(to right, #087cff 1px, transparent 1px), linear-gradient(to bottom, #087cff 1px, transparent 1px)",
+              backgroundSize: "92px 92px",
+            }}
+          />
+
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none fixed left-[7%] top-[20%] z-[2] h-24 w-24 rounded-full border border-[#38afff]/25 bg-[#087cff]/[0.04] backdrop-blur-sm"
+            style={{ x: shapeOneX, y: shapeOneY }}
+          />
+
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none fixed right-[8%] top-[25%] z-[2] h-44 w-44 rounded-full border border-dashed border-[#5bc0ff]/25"
+            style={{
+              x: shapeTwoX,
+              y: shapeTwoY,
+              rotate: shapeTwoRotate,
+            }}
+          />
+
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none fixed bottom-[12%] left-[14%] z-[2] h-14 w-14 rotate-45 rounded-2xl border border-[#087cff]/20 bg-[#2bb5ff]/[0.04]"
+            style={{ x: shapeThreeX, y: shapeThreeY }}
+          />
+        </>
+      )}
 
       <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031326]/78 backdrop-blur-2xl">
         <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
@@ -370,6 +427,14 @@ export default function Home() {
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,rgba(0,136,255,0.35),transparent_28%),radial-gradient(circle_at_85%_18%,rgba(0,190,255,0.14),transparent_24%),linear-gradient(135deg,#021123_0%,#08233f_50%,#031326_100%)]" />
         <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:70px_70px] sm:[background-size:100px_100px]" />
+
+        {interactiveBackground && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0"
+            style={{ background: spotlight }}
+          />
+        )}
 
         <motion.div
           style={{ y: orbY }}
@@ -655,6 +720,14 @@ export default function Home() {
       <section className="relative z-10 overflow-hidden bg-[#031326] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,126,255,0.22),transparent_30%),radial-gradient(circle_at_90%_20%,rgba(24,166,255,0.12),transparent_25%)]" />
         <div className="absolute inset-0 opacity-[0.05] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:78px_78px]" />
+
+        {interactiveBackground && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-80"
+            style={{ background: spotlight }}
+          />
+        )}
 
         <div className="relative mx-auto max-w-[1440px]">
           <div className="grid gap-8 rounded-[2.5rem] border border-white/10 bg-white/[0.07] p-7 backdrop-blur-xl sm:rounded-[3rem] sm:p-10 lg:grid-cols-[1fr_0.8fr] lg:items-center lg:p-14">
