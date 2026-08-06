@@ -2,7 +2,14 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
 import {
   ArrowRight,
   CheckCircle2,
@@ -94,14 +101,70 @@ export default function Home() {
     mass: 0.2,
   });
 
+  const mouseX = useMotionValue(-500);
+  const mouseY = useMotionValue(-500);
+
+  const smoothMouseX = useSpring(mouseX, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.25,
+  });
+
+  const smoothMouseY = useSpring(mouseY, {
+    stiffness: 120,
+    damping: 24,
+    mass: 0.25,
+  });
+
+  const gridX = useTransform(smoothMouseX, [0, 1600], [-14, 14]);
+  const gridY = useTransform(smoothMouseY, [0, 1000], [-10, 10]);
+
+  const spotlight = useMotionTemplate`radial-gradient(
+    520px circle at ${smoothMouseX}px ${smoothMouseY}px,
+    rgba(25, 158, 255, 0.20),
+    rgba(8, 124, 255, 0.08) 34%,
+    transparent 72%
+  )`;
+
+  const handleMouseMove = (event: React.MouseEvent<HTMLElement>) => {
+    mouseX.set(event.clientX);
+    mouseY.set(event.clientY);
+  };
+
+  const handleMouseLeave = () => {
+    mouseX.set(-500);
+    mouseY.set(-500);
+  };
+
   return (
-    <main className="min-h-screen overflow-hidden bg-white text-[#071a33]">
+    <main
+      className="relative min-h-screen overflow-hidden bg-white text-[#071a33]"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-0 z-[2] hidden opacity-100 md:block"
+        style={{ background: spotlight }}
+      />
+
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none fixed inset-[-30px] z-[1] hidden opacity-[0.035] md:block"
+        style={{
+          x: gridX,
+          y: gridY,
+          backgroundImage:
+            "linear-gradient(to right, #087cff 1px, transparent 1px), linear-gradient(to bottom, #087cff 1px, transparent 1px)",
+          backgroundSize: "88px 88px",
+        }}
+      />
       <motion.div
         style={{ scaleX: progress }}
         className="fixed left-0 top-0 z-[90] h-[3px] w-full origin-left bg-gradient-to-r from-[#2bb5ff] via-[#087cff] to-[#2142d6]"
       />
 
-      <div className="hidden bg-[#06172d] text-white md:block">
+      <div className="relative z-10 hidden bg-[#06172d] text-white md:block">
         <div className="mx-auto flex max-w-[1380px] items-center justify-between px-6 py-2 text-xs font-semibold">
           <p>Soluzioni digitali per aziende e professionisti</p>
           <div className="flex items-center gap-6">
@@ -212,11 +275,31 @@ export default function Home() {
 
       <section
         id="home"
+        style={{ isolation: "isolate" }}
         className="relative overflow-hidden bg-[#f7faff] px-4 pb-16 pt-14 sm:px-6 sm:pb-20 sm:pt-20 lg:px-8 lg:pb-28 lg:pt-24"
       >
         <div className="absolute inset-0 opacity-[0.04] [background-image:linear-gradient(to_right,#006bff_1px,transparent_1px),linear-gradient(to_bottom,#006bff_1px,transparent_1px)] [background-size:80px_80px]" />
         <div className="absolute -right-32 top-10 h-[420px] w-[420px] rounded-full bg-[#087cff]/10 blur-3xl sm:h-[620px] sm:w-[620px]" />
         <div className="absolute -left-28 bottom-0 h-72 w-72 rounded-full bg-[#2bb5ff]/10 blur-3xl" />
+
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-[8%] top-[18%] hidden h-24 w-24 rounded-full border border-[#087cff]/20 bg-[#087cff]/5 backdrop-blur-sm md:block"
+          style={{
+            x: useTransform(smoothMouseX, [0, 1600], [-18, 18]),
+            y: useTransform(smoothMouseY, [0, 1000], [-14, 14]),
+          }}
+        />
+
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-[14%] right-[7%] hidden h-40 w-40 rounded-full border border-dashed border-[#2bb5ff]/25 md:block"
+          style={{
+            x: useTransform(smoothMouseX, [0, 1600], [22, -22]),
+            y: useTransform(smoothMouseY, [0, 1000], [16, -16]),
+            rotate: useTransform(smoothMouseX, [0, 1600], [-8, 8]),
+          }}
+        />
 
         <div className="relative mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[1.04fr_0.96fr] lg:items-center">
           <motion.div
@@ -322,7 +405,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-[#dce8f8] bg-white px-4 py-5 sm:px-6 lg:px-8">
+      <section className="relative z-10 border-y border-[#dce8f8] bg-white px-4 py-5 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-[1380px] gap-4 text-center sm:grid-cols-3">
           {[
             ["Mobile-first", "Perfetto su ogni dispositivo"],
@@ -342,7 +425,8 @@ export default function Home() {
 
       <section
         id="servizi"
-        className="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+        style={{ isolation: "isolate" }}
+        className="relative z-10 overflow-hidden bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
       >
         <div className="mx-auto max-w-[1380px]">
           <div className="mb-12 text-center">
@@ -408,10 +492,16 @@ export default function Home() {
 
       <section
         id="vantaggi"
+        style={{ isolation: "isolate" }}
         className="relative overflow-hidden bg-[#06172d] px-4 py-16 text-white sm:px-6 sm:py-24 lg:px-8 lg:py-28"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_40%,rgba(0,126,255,0.24),transparent_30%),radial-gradient(circle_at_90%_15%,rgba(22,171,255,0.12),transparent_25%)]" />
         <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:80px_80px]" />
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden md:block"
+          style={{ background: spotlight }}
+        />
 
         <div className="relative mx-auto grid max-w-[1380px] gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
           <div>
@@ -450,6 +540,7 @@ export default function Home() {
 
       <section
         id="metodo"
+        style={{ isolation: "isolate" }}
         className="bg-[#f7faff] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
       >
         <div className="mx-auto max-w-[1380px]">
@@ -487,9 +578,15 @@ export default function Home() {
 
       <section
         id="contatti"
-        className="bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
+        style={{ isolation: "isolate" }}
+        className="relative z-10 overflow-hidden bg-white px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-28"
       >
-        <div className="mx-auto grid max-w-[1380px] overflow-hidden rounded-[2.2rem] bg-[#087cff] shadow-[0_30px_90px_rgba(0,94,210,0.20)] sm:rounded-[2.8rem] lg:grid-cols-[1.05fr_0.95fr]">
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 hidden opacity-60 md:block"
+          style={{ background: spotlight }}
+        />
+        <div className="relative mx-auto grid max-w-[1380px] overflow-hidden rounded-[2.2rem] bg-[#087cff] shadow-[0_30px_90px_rgba(0,94,210,0.20)] sm:rounded-[2.8rem] lg:grid-cols-[1.05fr_0.95fr]">
           <div className="relative overflow-hidden p-7 text-white sm:p-10 lg:p-14">
             <div className="absolute -bottom-28 -right-20 h-80 w-80 rounded-full border border-white/20" />
             <div className="absolute -bottom-20 -right-12 h-60 w-60 rounded-full border border-white/15" />
