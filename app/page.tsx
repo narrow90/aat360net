@@ -526,13 +526,18 @@ export default function Home() {
               transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
               className="absolute -bottom-10 -left-3 hidden w-[34%] rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-2xl shadow-black/30 backdrop-blur-xl sm:block"
             >
-              <Image
-                src="/mobile-preview.svg"
-                alt="Anteprima mobile"
-                width={350}
-                height={650}
-                className="h-auto w-full rounded-[1.4rem]"
-              />
+              <video
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="metadata"
+  aria-label="Anteprima video del sito su dispositivo mobile"
+  className="aspect-[9/16] h-auto w-full rounded-[1.4rem] bg-[#031326] object-cover"
+>
+  <source src="/mobile-preview.mp4" type="video/mp4" />
+  Il tuo browser non supporta la riproduzione video.
+</video>
             </motion.div>
           </motion.div>
         </div>
