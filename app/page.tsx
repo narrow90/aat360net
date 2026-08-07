@@ -549,7 +549,7 @@ export default function Home() {
   <Image
     src="/cornice-smartphone.png"
     alt=""
-    width={324}
+    width={300}
     height={488}
     className="relative z-20 h-auto w-full object-contain"
     priority
