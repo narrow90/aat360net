@@ -536,7 +536,7 @@ export default function Home() {
                     aria-label="Anteprima video del sito su smartphone"
                     className="block aspect-[9/16] w-full rounded-[2.75rem] bg-black object-cover object-center sm:rounded-[3.45rem]"
                   >
-                    <source src="/mobile-preview.mp4" type="video/mp4" />
+                    <source src="/mobile-preview-scale2.mp4" type="video/mp4" />
                     Il tuo browser non supporta la riproduzione video.
                   </video>
 
