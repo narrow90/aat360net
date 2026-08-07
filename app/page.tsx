@@ -522,23 +522,27 @@ export default function Home() {
             </motion.div>
 
             <motion.div
-              animate={{ y: [0, 12, 0], rotate: [-1.5, 1.5, -1.5] }}
-              transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute -bottom-10 -left-3 hidden w-[34%] rounded-[2rem] border border-white/10 bg-white/10 p-3 shadow-2xl shadow-black/30 backdrop-blur-xl sm:block"
-            >
-              <video
-  autoPlay
-  muted
-  loop
-  playsInline
-  preload="metadata"
-  aria-label="Anteprima video del sito su dispositivo mobile"
-  className="aspect-[9/16] h-auto w-full rounded-[1.4rem] bg-[#031326] object-cover"
+  animate={{ y: [0, 12, 0], rotate: [-1.5, 1.5, -1.5] }}
+  transition={{
+    duration: 7,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="absolute -bottom-10 -left-3 hidden w-fit overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#031326] shadow-2xl shadow-black/30 sm:block"
 >
-  <source src="/mobile-preview-scale.mp4" type="video/mp4" />
-  Il tuo browser non supporta la riproduzione video.
-</video>
-            </motion.div>
+  <video
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="metadata"
+    aria-label="Anteprima video del sito su dispositivo mobile"
+    className="block aspect-[9/16] h-auto w-[150px] object-cover sm:w-[170px] lg:w-[190px]"
+  >
+    <source src="/mobile-preview.mp4" type="video/mp4" />
+    Il tuo browser non supporta la riproduzione video.
+  </video>
+</motion.div>
           </motion.div>
         </div>
       </section>
