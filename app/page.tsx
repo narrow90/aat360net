@@ -535,19 +535,7 @@ export default function Home() {
             </motion.div>
 
             {/* Etichette nascoste sui telefoni piccoli per non coprire il video */}
-            <motion.div
-              animate={{ y: [0, -9, 0] }}
-              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-[2%] top-[20%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl md:block"
-            >
-            </motion.div>
-
-            <motion.div
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-[17%] right-[1%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl md:block"
-            >
-            </motion.div>
+           
           </motion.div>
 
           {/* Testo e CTA: dopo il telefono su mobile, sotto il titolo su desktop */}
