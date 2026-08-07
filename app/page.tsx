@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import {
+  AnimatePresence,
   motion,
   useMotionTemplate,
   useMotionValue,
@@ -12,6 +13,7 @@ import {
 } from "framer-motion";
 import {
   ArrowRight,
+  ArrowUp,
   Check,
   ChevronDown,
   ExternalLink,
@@ -214,6 +216,7 @@ function Counter({
 export default function Home() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [interactiveBackground, setInteractiveBackground] = useState(false);
+  const [showBackToTop, setShowBackToTop] = useState(false);
   const { scrollYProgress } = useScroll();
 
   useEffect(() => {
@@ -230,6 +233,19 @@ export default function Home() {
 
     return () => {
       mediaQuery.removeEventListener("change", updateInteractionMode);
+    };
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowBackToTop(window.scrollY > 450);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -466,7 +482,6 @@ export default function Home() {
             transition={{ duration: 0.75 }}
             className="order-1 lg:col-start-1 lg:row-start-1 lg:self-end"
           >
-
             <h1 className="max-w-5xl text-[2.65rem] font-black leading-[0.91] tracking-[-0.065em] min-[390px]:text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.7rem] xl:text-[6.8rem]">
               Il digitale
               <span className="block bg-gradient-to-r from-[#43bbff] via-[#087cff] to-[#405dff] bg-clip-text text-transparent">
@@ -530,8 +545,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Etichette nascoste sui telefoni piccoli per non coprire il video */}
-           
           </motion.div>
 
           {/* Testo e CTA: dopo il telefono su mobile, sotto il titolo su desktop */}
@@ -884,6 +897,29 @@ export default function Home() {
           </div>
         </div>
       </footer>
+
+      <AnimatePresence>
+        {showBackToTop && (
+          <motion.button
+            type="button"
+            initial={{ opacity: 0, scale: 0.85, y: 12 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.85, y: 12 }}
+            transition={{ duration: 0.25 }}
+            onClick={() =>
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              })
+            }
+            aria-label="Torna su"
+            title="Torna su"
+            className="fixed bottom-5 right-5 z-[80] flex h-12 w-12 items-center justify-center rounded-2xl bg-[#087cff] text-white shadow-[0_14px_35px_rgba(8,124,255,0.32)] transition duration-300 hover:-translate-y-1 hover:bg-[#0067df] hover:shadow-[0_18px_45px_rgba(8,124,255,0.40)] sm:bottom-7 sm:right-7 sm:h-14 sm:w-14"
+          >
+            <ArrowUp className="h-5 w-5 sm:h-6 sm:w-6" />
+          </motion.button>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
