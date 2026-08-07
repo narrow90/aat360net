@@ -466,10 +466,6 @@ export default function Home() {
             transition={{ duration: 0.75 }}
             className="order-1 lg:col-start-1 lg:row-start-1 lg:self-end"
           >
-            <div className="mb-4 inline-flex items-center gap-2 rounded-2xl border border-[#087cff]/15 bg-[#087cff]/[0.07] px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#087cff] sm:mb-6 sm:px-4 sm:text-sm sm:tracking-[0.2em]">
-              <Sparkles className="h-4 w-4" />
-              Digital products for modern business
-            </div>
 
             <h1 className="max-w-5xl text-[2.65rem] font-black leading-[0.91] tracking-[-0.065em] min-[390px]:text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.7rem] xl:text-[6.8rem]">
               Il digitale
