@@ -38,7 +38,7 @@ const services = [
     label: "Comunicare",
     title: "Siti vetrina",
     text: "Esperienze digitali professionali, veloci e responsive per valorizzare il brand, presentare i servizi e generare nuovi contatti.",
-    image: "/mockup-vetrina.svg",
+    image: "/vetrina.jpg",
     icon: LayoutTemplate,
     features: [
       "Design personalizzato",
@@ -52,7 +52,7 @@ const services = [
     label: "Vendere",
     title: "E-commerce",
     text: "Negozi online chiari e performanti, progettati per accompagnare l’utente dal catalogo fino all’acquisto.",
-    image: "/mockup-ecommerce.svg",
+    image: "/ecomm.jpg",
     icon: ShoppingCart,
     features: [
       "Catalogo prodotti",
@@ -66,7 +66,7 @@ const services = [
     label: "Organizzare",
     title: "Gestionali",
     text: "Software su misura per centralizzare clienti, dati, attività e processi in un’unica piattaforma operativa.",
-    image: "/mockup-gestionale.svg",
+    image: "/gest.jpg",
     icon: Workflow,
     features: [
       "Dashboard dedicate",
@@ -531,12 +531,6 @@ export default function Home() {
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               className="absolute left-[2%] top-[20%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl md:block"
             >
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#087cff]">
-                Mobile-first
-              </p>
-              <p className="mt-1 text-sm font-bold text-[#071a33]">
-                Esperienza fluida
-              </p>
             </motion.div>
 
             <motion.div
