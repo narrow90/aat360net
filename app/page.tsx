@@ -538,9 +538,6 @@ export default function Home() {
               transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
               className="absolute bottom-[17%] right-[1%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl md:block"
             >
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#087cff]">
-                Responsive
-              </p>
               <p className="mt-1 text-sm font-bold text-[#071a33]">
                 1080 × 1920
               </p>
