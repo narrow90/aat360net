@@ -338,20 +338,24 @@ export default function Home() {
         </>
       )}
 
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-[#031326]/78 backdrop-blur-2xl">
-        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <a href="#home" className="relative z-10 flex items-center">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-[#dbe7f5] bg-white/95 shadow-[0_8px_30px_rgba(7,42,84,0.08)] backdrop-blur-2xl">
+        <div className="mx-auto flex max-w-[1440px] items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
+          <a
+            href="#home"
+            className="relative z-10 flex shrink-0 items-center"
+            aria-label="AAT 360 NetworkLab - Home"
+          >
             <Image
-              src="/logo-aat360.png"
+              src="/logo-aat360-header.png"
               alt="AAT 360 NetworkLab"
-              width={230}
-              height={100}
+              width={1240}
+              height={730}
               priority
-              className="h-12 w-auto object-contain sm:h-14"
+              className="h-[56px] w-auto object-contain object-left sm:h-[64px] lg:h-[68px]"
             />
           </a>
 
-          <nav className="hidden items-center gap-9 text-sm font-semibold text-slate-300 md:flex">
+          <nav className="hidden items-center gap-9 text-sm font-bold text-slate-600 md:flex">
             {[
               ["Servizi", "#servizi"],
               ["Metodo", "#metodo"],
@@ -360,7 +364,7 @@ export default function Home() {
               <a
                 key={label}
                 href={href}
-                className="relative py-2 transition hover:text-white after:absolute after:bottom-0 after:left-0 after:h-px after:w-0 after:bg-[#58baff] after:transition-all after:duration-300 hover:after:w-full"
+                className="relative py-2 transition duration-300 hover:text-[#087cff] after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:rounded-full after:bg-[#087cff] after:transition-all after:duration-300 hover:after:w-full"
               >
                 {label}
               </a>
@@ -371,7 +375,7 @@ export default function Home() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden h-11 items-center rounded-2xl bg-white px-5 text-sm font-extrabold text-[#06172d] transition hover:-translate-y-0.5 hover:bg-[#eef6ff] sm:inline-flex"
+            className="hidden h-11 items-center rounded-2xl bg-[#087cff] px-5 text-sm font-extrabold text-white shadow-lg shadow-blue-500/20 transition duration-300 hover:-translate-y-0.5 hover:bg-[#0067df] hover:shadow-xl sm:inline-flex"
           >
             Richiedi preventivo
           </a>
@@ -379,19 +383,23 @@ export default function Home() {
           <button
             type="button"
             onClick={() => setMenuOpen((value) => !value)}
-            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5 md:hidden"
-            aria-label="Apri menu"
+            className="flex h-11 w-11 items-center justify-center rounded-2xl border border-[#d5e3f4] bg-[#f6f9fe] text-[#071a33] transition hover:border-[#087cff]/40 hover:bg-[#eef6ff] md:hidden"
+            aria-label={menuOpen ? "Chiudi menu" : "Apri menu"}
             aria-expanded={menuOpen}
           >
-            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {menuOpen ? (
+              <X className="h-5 w-5" />
+            ) : (
+              <Menu className="h-5 w-5" />
+            )}
           </button>
         </div>
 
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -12 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="border-t border-white/10 bg-[#06182f] px-4 py-4 md:hidden"
+            className="border-t border-[#dbe7f5] bg-white px-4 py-4 text-[#071a33] shadow-xl md:hidden"
           >
             <nav className="grid gap-2">
               {[
@@ -403,7 +411,7 @@ export default function Home() {
                   key={label}
                   href={href}
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl border border-white/10 bg-white/5 px-5 py-4 font-bold"
+                  className="rounded-2xl border border-[#dbe7f5] bg-[#f7faff] px-5 py-4 font-bold transition hover:border-[#087cff]/30 hover:bg-[#eef6ff]"
                 >
                   {label}
                 </a>
@@ -413,7 +421,8 @@ export default function Home() {
                 href={WHATSAPP_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-[#087cff] px-5 py-4 font-bold"
+                onClick={() => setMenuOpen(false)}
+                className="mt-1 flex items-center justify-center gap-2 rounded-2xl bg-[#087cff] px-5 py-4 font-bold text-white shadow-lg shadow-blue-500/20"
               >
                 <MessageCircle className="h-4 w-4" />
                 Richiedi preventivo
@@ -649,22 +658,22 @@ export default function Home() {
                     }`}
                   >
                     <div className="relative min-h-[340px] overflow-hidden bg-[#06172d] sm:min-h-[450px] lg:min-h-full">
-  <motion.div
-    whileHover={{ scale: 1.04 }}
-    transition={{ duration: 0.5, ease: "easeOut" }}
-    className="absolute inset-0"
-  >
-    <Image
-      src={service.image}
-      alt={`Mockup ${service.title}`}
-      fill
-      sizes="(max-width: 1023px) 100vw, 50vw"
-      className="scale-[1.03] object-cover object-center"
-    />
-  </motion.div>
+                      <motion.div
+                        whileHover={{ scale: 1.04 }}
+                        transition={{ duration: 0.5, ease: "easeOut" }}
+                        className="absolute inset-0"
+                      >
+                        <Image
+                          src={service.image}
+                          alt={`Mockup ${service.title}`}
+                          fill
+                          sizes="(max-width: 1023px) 100vw, 50vw"
+                          className="scale-[1.03] object-cover object-center"
+                        />
+                      </motion.div>
 
-  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#031326]/15 via-transparent to-transparent" />
-</div>
+                      <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#031326]/15 via-transparent to-transparent" />
+                    </div>
 
                     <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
                       <div className="flex items-center justify-between gap-4">
