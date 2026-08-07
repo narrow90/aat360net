@@ -115,7 +115,7 @@ function MagneticLink({
 }: {
   href: string;
   children: React.ReactNode;
-  variant?: "primary" | "secondary" | "light";
+  variant?: "primary" | "secondary" | "light" | "outline";
   external?: boolean;
 }) {
   const ref = useRef<HTMLAnchorElement | null>(null);
@@ -131,6 +131,8 @@ function MagneticLink({
       "border border-white/15 bg-white/[0.06] text-white hover:bg-white/[0.11]",
     light:
       "bg-white text-[#06172d] hover:bg-[#eef6ff]",
+    outline:
+      "border border-[#cbdcf0] bg-white/80 text-[#06172d] shadow-sm hover:border-[#087cff]/50 hover:bg-[#eef6ff]",
   };
 
   return (
@@ -199,12 +201,12 @@ function Counter({
   }, [value]);
 
   return (
-    <div ref={ref} className="border-l border-white/10 pl-5">
+    <div ref={ref} className="border-l border-[#cbdcf0] pl-5">
       <p className="text-3xl font-black tracking-tight sm:text-4xl">
         {visibleValue}
         {suffix}
       </p>
-      <p className="mt-1 text-sm font-semibold text-slate-400">{label}</p>
+      <p className="mt-1 text-sm font-semibold text-slate-500">{label}</p>
     </div>
   );
 }
@@ -423,10 +425,10 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative z-10 flex min-h-screen items-center overflow-hidden px-4 pb-16 pt-28 sm:px-6 sm:pt-32 lg:px-8"
+        className="relative z-10 flex min-h-screen items-center overflow-hidden bg-white px-4 pb-16 pt-28 text-[#071a33] sm:px-6 sm:pt-32 lg:px-8"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,rgba(0,136,255,0.35),transparent_28%),radial-gradient(circle_at_85%_18%,rgba(0,190,255,0.14),transparent_24%),linear-gradient(135deg,#021123_0%,#08233f_50%,#031326_100%)]" />
-        <div className="absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:70px_70px] sm:[background-size:100px_100px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(8,124,255,0.13),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(43,181,255,0.12),transparent_27%),linear-gradient(180deg,#ffffff_0%,#f7fbff_100%)]" />
+        <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(to_right,#087cff_1px,transparent_1px),linear-gradient(to_bottom,#087cff_1px,transparent_1px)] [background-size:70px_70px] sm:[background-size:100px_100px]" />
 
         {interactiveBackground && (
           <motion.div
@@ -438,13 +440,13 @@ export default function Home() {
 
         <motion.div
           style={{ y: orbY }}
-          className="absolute -right-40 top-24 h-[520px] w-[520px] rounded-full border border-[#2aaeff]/20 sm:h-[720px] sm:w-[720px]"
+          className="absolute -right-40 top-24 h-[520px] w-[520px] rounded-full border border-[#087cff]/12 sm:h-[720px] sm:w-[720px]"
         />
 
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 55, repeat: Infinity, ease: "linear" }}
-          className="absolute right-[9%] top-[17%] hidden h-72 w-72 rounded-full border border-dashed border-[#4ab9ff]/20 lg:block"
+          className="absolute right-[9%] top-[17%] hidden h-72 w-72 rounded-full border border-dashed border-[#087cff]/18 lg:block"
         />
 
         <div className="relative mx-auto grid w-full max-w-[1440px] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
@@ -453,7 +455,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75 }}
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-2xl border border-[#47b7ff]/20 bg-[#087cff]/10 px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#99d8ff] sm:text-sm">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-2xl border border-[#087cff]/15 bg-[#087cff]/[0.07] px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#087cff] sm:text-sm">
               <Sparkles className="h-4 w-4" />
               Digital products for modern business
             </div>
@@ -465,7 +467,7 @@ export default function Home() {
               </span>
             </h1>
 
-            <p className="mt-7 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8">
+            <p className="mt-7 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
               Progettiamo siti vetrina, e-commerce e gestionali capaci di
               comunicare meglio, vendere online e semplificare i processi
               aziendali.
@@ -475,7 +477,7 @@ export default function Home() {
               <MagneticLink href={WHATSAPP_URL} external>
                 Inizia un progetto
               </MagneticLink>
-              <MagneticLink href="#servizi" variant="secondary">
+              <MagneticLink href="#servizi" variant="outline">
                 Esplora i servizi
               </MagneticLink>
             </div>
@@ -488,7 +490,7 @@ export default function Home() {
 
             <a
               href="#servizi"
-              className="mt-12 inline-flex items-center gap-3 text-sm font-bold text-slate-400 transition hover:text-white"
+              className="mt-12 inline-flex items-center gap-3 text-sm font-bold text-slate-500 transition hover:text-[#087cff]"
             >
               Scopri come lavoriamo
               <ChevronDown className="h-4 w-4 animate-bounce" />
@@ -497,64 +499,81 @@ export default function Home() {
 
           <motion.div
             style={{ y: mockupY }}
-            initial={{ opacity: 0, scale: 0.94 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, scale: 0.9, y: 35 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.12 }}
-            className="relative"
+            className="relative flex min-h-[560px] items-center justify-center sm:min-h-[660px]"
           >
-            <div className="absolute -inset-10 rounded-[3rem] bg-[#087cff]/20 blur-3xl" />
+            <div className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#087cff]/14 blur-3xl sm:h-[520px] sm:w-[520px]" />
 
             <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.08] p-3 shadow-2xl shadow-black/35 backdrop-blur-2xl sm:rounded-[3rem] sm:p-5"
+              animate={{ rotate: 360 }}
+              transition={{ duration: 38, repeat: Infinity, ease: "linear" }}
+              className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#087cff]/20 sm:h-[540px] sm:w-[540px]"
+            />
+
+            <motion.div
+              animate={{
+                y: [0, -18, 0],
+                rotate: [-1.8, 1.8, -1.8],
+              }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+              whileHover={{ scale: 1.025 }}
+              className="relative z-10 w-[235px] sm:w-[285px] lg:w-[325px] xl:w-[350px]"
             >
-              <div className="relative overflow-hidden rounded-[1.6rem] bg-white p-4 sm:rounded-[2.4rem] sm:p-6">
-                <Image
-                  src="/hero-dashboard.svg"
-                  alt="Mockup dashboard AAT 360"
-                  width={1200}
-                  height={850}
-                  priority
-                  className="h-auto w-full"
-                />
+              <div className="relative rounded-[3.65rem] bg-gradient-to-br from-[#dce7f0] via-[#6e8498] to-[#eef5fa] p-[7px] shadow-[0_38px_100px_rgba(7,53,104,0.30)] sm:rounded-[4.4rem] sm:p-[9px]">
+                <div className="relative overflow-hidden rounded-[3.25rem] bg-[#02060b] p-[8px] sm:rounded-[4rem] sm:p-[10px]">
+                  <video
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    aria-label="Anteprima video del sito su smartphone"
+                    className="block aspect-[9/16] w-full rounded-[2.75rem] bg-black object-cover object-center sm:rounded-[3.45rem]"
+                  >
+                    <source src="/mobile-preview.mp4" type="video/mp4" />
+                    Il tuo browser non supporta la riproduzione video.
+                  </video>
+
+                  <div className="pointer-events-none absolute left-1/2 top-[18px] h-[21px] w-[76px] -translate-x-1/2 rounded-full bg-black sm:top-[22px] sm:h-[25px] sm:w-[92px]" />
+                </div>
+
+                <span className="absolute -right-[3px] top-[24%] h-16 w-[4px] rounded-r-full bg-[#7b91a4]" />
+                <span className="absolute -left-[3px] top-[20%] h-10 w-[4px] rounded-l-full bg-[#7b91a4]" />
+                <span className="absolute -left-[3px] top-[31%] h-16 w-[4px] rounded-l-full bg-[#7b91a4]" />
               </div>
             </motion.div>
 
             <motion.div
-  animate={{ y: [0, 12, 0], rotate: [-1.5, 1.5, -1.5] }}
-  transition={{
-    duration: 7,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className="absolute -bottom-10 -left-3 hidden w-[220px] sm:block lg:w-[250px]"
->
-  {/* Area interna dello schermo */}
-  <div className="absolute bottom-[5%] left-[13%] right-[12%] top-[14%] z-10 overflow-hidden rounded-[26px] bg-black">
-    <video
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="metadata"
-      aria-label="Anteprima video mobile"
-      className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center"
-    >
-      <source src="/mobile-preview-scale2.mp4" type="video/mp4" />
-    </video>
-  </div>
+              animate={{ y: [0, -9, 0] }}
+              transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute left-[4%] top-[20%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl sm:block"
+            >
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#087cff]">
+                Mobile-first
+              </p>
+              <p className="mt-1 text-sm font-bold text-[#071a33]">
+                Esperienza fluida
+              </p>
+            </motion.div>
 
-  {/* Cornice del telefono sopra al video */}
-  <Image
-    src="/cornice-smartphone.png"
-    alt=""
-    width={300}
-    height={488}
-    className="relative z-20 h-auto w-full object-contain"
-    priority
-  />
-</motion.div>
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute bottom-[17%] right-[1%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl sm:block"
+            >
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-[#087cff]">
+                Responsive
+              </p>
+              <p className="mt-1 text-sm font-bold text-[#071a33]">
+                1080 × 1920
+              </p>
+            </motion.div>
           </motion.div>
         </div>
       </section>
