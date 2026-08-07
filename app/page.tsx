@@ -528,20 +528,32 @@ export default function Home() {
     repeat: Infinity,
     ease: "easeInOut",
   }}
-  className="absolute -bottom-10 -left-3 hidden w-fit overflow-hidden rounded-[1.4rem] border border-white/10 bg-[#031326] shadow-2xl shadow-black/30 sm:block"
+  className="absolute -bottom-10 -left-3 hidden w-[220px] sm:block lg:w-[250px]"
 >
-  <video
-    autoPlay
-    muted
-    loop
-    playsInline
-    preload="metadata"
-    aria-label="Anteprima video del sito su dispositivo mobile"
-    className="block aspect-[9/16] h-auto w-[150px] object-cover sm:w-[170px] lg:w-[190px]"
-  >
-    <source src="/mobile-preview.mp4" type="video/mp4" />
-    Il tuo browser non supporta la riproduzione video.
-  </video>
+  {/* Area interna dello schermo */}
+  <div className="absolute bottom-[5%] left-[13%] right-[12%] top-[14%] z-10 overflow-hidden rounded-[26px] bg-black">
+    <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      preload="metadata"
+      aria-label="Anteprima video mobile"
+      className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 object-cover object-center"
+    >
+      <source src="/mobile-preview.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  {/* Cornice del telefono sopra al video */}
+  <Image
+    src="/cornice-smartphone.png"
+    alt=""
+    width={324}
+    height={488}
+    className="relative z-20 h-auto w-full object-contain"
+    priority
+  />
 </motion.div>
           </motion.div>
         </div>
