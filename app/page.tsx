@@ -511,7 +511,7 @@ export default function Home() {
                       aria-label="Anteprima video del sito su smartphone"
                       className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.08] object-cover object-center"
                     >
-                      <source src="/mobile-preview.mp4" type="video/mp4" />
+                      <source src="/VIDEO SWIPE 2.mp4" type="video/mp4" />
                       Il tuo browser non supporta la riproduzione video.
                     </video>
                   </div>
