@@ -651,22 +651,23 @@ export default function Home() {
                       reverse ? "lg:[&>*:first-child]:order-2" : ""
                     }`}
                   >
-                    <div className="relative min-h-[340px] overflow-hidden bg-[#06172d] p-5 sm:min-h-[450px] sm:p-8">
-                      <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_20%,rgba(8,124,255,0.28),transparent_35%),linear-gradient(135deg,#06172d,#0a294d)]" />
-                      <motion.div
-                        whileHover={{ scale: 1.025 }}
-                        transition={{ duration: 0.45 }}
-                        className="relative flex h-full items-center justify-center"
-                      >
-                        <Image
-                          src={service.image}
-                          alt={`Mockup ${service.title}`}
-                          width={900}
-                          height={650}
-                          className="h-auto w-full max-w-[720px] drop-shadow-2xl"
-                        />
-                      </motion.div>
-                    </div>
+                    <div className="relative min-h-[340px] overflow-hidden bg-[#06172d] sm:min-h-[450px] lg:min-h-full">
+  <motion.div
+    whileHover={{ scale: 1.04 }}
+    transition={{ duration: 0.5, ease: "easeOut" }}
+    className="absolute inset-0"
+  >
+    <Image
+      src={service.image}
+      alt={`Mockup ${service.title}`}
+      fill
+      sizes="(max-width: 1023px) 100vw, 50vw"
+      className="scale-[1.03] object-cover object-center"
+    />
+  </motion.div>
+
+  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#031326]/15 via-transparent to-transparent" />
+</div>
 
                     <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-14">
                       <div className="flex items-center justify-between gap-4">
