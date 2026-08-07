@@ -425,7 +425,7 @@ export default function Home() {
 
       <section
         id="home"
-        className="relative z-10 flex min-h-screen items-center overflow-hidden bg-white px-4 pb-16 pt-28 text-[#071a33] sm:px-6 sm:pt-32 lg:px-8"
+        className="relative z-10 flex items-center overflow-hidden bg-white px-4 pb-14 pt-24 text-[#071a33] sm:px-6 sm:pb-16 sm:pt-32 lg:min-h-screen lg:px-8"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_12%,rgba(8,124,255,0.13),transparent_30%),radial-gradient(circle_at_86%_18%,rgba(43,181,255,0.12),transparent_27%),linear-gradient(180deg,#ffffff_0%,#f7fbff_100%)]" />
         <div className="absolute inset-0 opacity-[0.055] [background-image:linear-gradient(to_right,#087cff_1px,transparent_1px),linear-gradient(to_bottom,#087cff_1px,transparent_1px)] [background-size:70px_70px] sm:[background-size:100px_100px]" />
@@ -449,73 +449,47 @@ export default function Home() {
           className="absolute right-[9%] top-[17%] hidden h-72 w-72 rounded-full border border-dashed border-[#087cff]/18 lg:block"
         />
 
-        <div className="relative mx-auto grid w-full max-w-[1440px] gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+        <div className="relative mx-auto grid w-full max-w-[1440px] gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:grid-rows-[auto_auto] lg:items-center lg:gap-x-12 lg:gap-y-0">
+          {/* Titolo: primo elemento su mobile e desktop */}
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75 }}
+            className="order-1 lg:col-start-1 lg:row-start-1 lg:self-end"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-2xl border border-[#087cff]/15 bg-[#087cff]/[0.07] px-4 py-2 text-xs font-black uppercase tracking-[0.2em] text-[#087cff] sm:text-sm">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-2xl border border-[#087cff]/15 bg-[#087cff]/[0.07] px-3 py-2 text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#087cff] sm:mb-6 sm:px-4 sm:text-sm sm:tracking-[0.2em]">
               <Sparkles className="h-4 w-4" />
               Digital products for modern business
             </div>
 
-            <h1 className="max-w-5xl text-[3.15rem] font-black leading-[0.89] tracking-[-0.07em] sm:text-6xl md:text-7xl lg:text-[5.7rem] xl:text-[6.8rem]">
+            <h1 className="max-w-5xl text-[2.65rem] font-black leading-[0.91] tracking-[-0.065em] min-[390px]:text-[3rem] sm:text-6xl md:text-7xl lg:text-[5.7rem] xl:text-[6.8rem]">
               Il digitale
               <span className="block bg-gradient-to-r from-[#43bbff] via-[#087cff] to-[#405dff] bg-clip-text text-transparent">
                 che lavora per te.
               </span>
             </h1>
-
-            <p className="mt-7 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
-              Progettiamo siti vetrina, e-commerce e gestionali capaci di
-              comunicare meglio, vendere online e semplificare i processi
-              aziendali.
-            </p>
-
-            <div className="mt-8 grid gap-3 sm:flex">
-              <MagneticLink href={WHATSAPP_URL} external>
-                Inizia un progetto
-              </MagneticLink>
-              <MagneticLink href="#servizi" variant="outline">
-                Esplora i servizi
-              </MagneticLink>
-            </div>
-
-            <div className="mt-10 grid grid-cols-2 gap-5 sm:flex sm:gap-8">
-              <Counter value={3} suffix="" label="Aree specializzate" />
-              <Counter value={100} suffix="%" label="Responsive" />
-              <Counter value={1} suffix="" label="Partner digitale" />
-            </div>
-
-            <a
-              href="#servizi"
-              className="mt-12 inline-flex items-center gap-3 text-sm font-bold text-slate-500 transition hover:text-[#087cff]"
-            >
-              Scopri come lavoriamo
-              <ChevronDown className="h-4 w-4 animate-bounce" />
-            </a>
           </motion.div>
 
+          {/* Telefono: subito dopo il titolo su mobile, a destra su desktop */}
           <motion.div
-            style={{ y: mockupY }}
-            initial={{ opacity: 0, scale: 0.9, y: 35 }}
+            style={interactiveBackground ? { y: mockupY } : undefined}
+            initial={{ opacity: 0, scale: 0.9, y: 28 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.12 }}
-            className="relative flex min-h-[560px] items-center justify-center sm:min-h-[660px]"
+            transition={{ duration: 0.9, delay: 0.1 }}
+            className="order-2 relative flex min-h-[505px] items-center justify-center py-3 sm:min-h-[610px] lg:col-start-2 lg:row-span-2 lg:row-start-1 lg:min-h-[660px] lg:py-0"
           >
-            <div className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#087cff]/14 blur-3xl sm:h-[520px] sm:w-[520px]" />
+            <div className="absolute left-1/2 top-1/2 h-[310px] w-[310px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#087cff]/14 blur-3xl min-[390px]:h-[350px] min-[390px]:w-[350px] sm:h-[520px] sm:w-[520px]" />
 
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 38, repeat: Infinity, ease: "linear" }}
-              className="absolute left-1/2 top-1/2 h-[390px] w-[390px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#087cff]/20 sm:h-[540px] sm:w-[540px]"
+              className="absolute left-1/2 top-1/2 h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[#087cff]/20 min-[390px]:h-[370px] min-[390px]:w-[370px] sm:h-[540px] sm:w-[540px]"
             />
 
             <motion.div
               animate={{
-                y: [0, -18, 0],
-                rotate: [-1.8, 1.8, -1.8],
+                y: [0, -12, 0],
+                rotate: [-1.2, 1.2, -1.2],
               }}
               transition={{
                 duration: 7,
@@ -523,36 +497,39 @@ export default function Home() {
                 ease: "easeInOut",
               }}
               whileHover={{ scale: 1.025 }}
-              className="relative z-10 w-[235px] sm:w-[285px] lg:w-[325px] xl:w-[350px]"
+              className="relative z-10 h-[470px] w-[228px] min-[390px]:h-[500px] min-[390px]:w-[242px] sm:h-[536px] sm:w-[260px] lg:h-[598px] lg:w-[290px] xl:h-[650px] xl:w-[315px]"
             >
-              <div className="relative rounded-[3.65rem] bg-gradient-to-br from-[#dce7f0] via-[#6e8498] to-[#eef5fa] p-[7px] shadow-[0_38px_100px_rgba(7,53,104,0.30)] sm:rounded-[4.4rem] sm:p-[9px]">
-                <div className="relative overflow-hidden rounded-[3.25rem] bg-[#02060b] p-[8px] sm:rounded-[4rem] sm:p-[10px]">
-                  <video
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    aria-label="Anteprima video del sito su smartphone"
-                    className="block aspect-[9/16] w-full rounded-[2.75rem] bg-black object-cover object-center sm:rounded-[3.45rem]"
-                  >
-                    <source src="/mobile-preview-scale2.mp4" type="video/mp4" />
-                    Il tuo browser non supporta la riproduzione video.
-                  </video>
+              <div className="relative h-full w-full rounded-[3.25rem] bg-gradient-to-br from-[#dce7f0] via-[#6e8498] to-[#eef5fa] p-[7px] shadow-[0_30px_80px_rgba(7,53,104,0.24)] sm:rounded-[4rem] sm:p-[9px] sm:shadow-[0_38px_100px_rgba(7,53,104,0.30)]">
+                <div className="relative h-full w-full overflow-hidden rounded-[2.88rem] bg-[#02060b] p-[5px] sm:rounded-[3.65rem] sm:p-[6px]">
+                  <div className="relative h-full w-full overflow-hidden rounded-[2.62rem] sm:rounded-[3.4rem]">
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      aria-label="Anteprima video del sito su smartphone"
+                      className="absolute left-1/2 top-1/2 h-full w-full -translate-x-1/2 -translate-y-1/2 scale-[1.08] object-cover object-center"
+                    >
+                      <source src="/mobile-preview.mp4" type="video/mp4" />
+                      Il tuo browser non supporta la riproduzione video.
+                    </video>
+                  </div>
 
-                  <div className="pointer-events-none absolute left-1/2 top-[18px] h-[21px] w-[76px] -translate-x-1/2 rounded-full bg-black sm:top-[22px] sm:h-[25px] sm:w-[92px]" />
+                  <div className="pointer-events-none absolute left-1/2 top-[14px] h-[20px] w-[70px] -translate-x-1/2 rounded-full bg-black min-[390px]:h-[21px] min-[390px]:w-[76px] sm:top-[17px] sm:h-[25px] sm:w-[92px]" />
                 </div>
 
-                <span className="absolute -right-[3px] top-[24%] h-16 w-[4px] rounded-r-full bg-[#7b91a4]" />
-                <span className="absolute -left-[3px] top-[20%] h-10 w-[4px] rounded-l-full bg-[#7b91a4]" />
-                <span className="absolute -left-[3px] top-[31%] h-16 w-[4px] rounded-l-full bg-[#7b91a4]" />
+                <span className="absolute -right-[3px] top-[24%] h-14 w-[4px] rounded-r-full bg-[#7b91a4] sm:h-16" />
+                <span className="absolute -left-[3px] top-[20%] h-9 w-[4px] rounded-l-full bg-[#7b91a4] sm:h-10" />
+                <span className="absolute -left-[3px] top-[31%] h-14 w-[4px] rounded-l-full bg-[#7b91a4] sm:h-16" />
               </div>
             </motion.div>
 
+            {/* Etichette nascoste sui telefoni piccoli per non coprire il video */}
             <motion.div
               animate={{ y: [0, -9, 0] }}
               transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute left-[4%] top-[20%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl sm:block"
+              className="absolute left-[2%] top-[20%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl md:block"
             >
               <p className="text-xs font-black uppercase tracking-[0.18em] text-[#087cff]">
                 Mobile-first
@@ -565,7 +542,7 @@ export default function Home() {
             <motion.div
               animate={{ y: [0, 10, 0] }}
               transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute bottom-[17%] right-[1%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl sm:block"
+              className="absolute bottom-[17%] right-[1%] hidden rounded-2xl border border-[#d9e7f6] bg-white/90 px-4 py-3 shadow-xl shadow-blue-900/10 backdrop-blur-xl md:block"
             >
               <p className="text-xs font-black uppercase tracking-[0.18em] text-[#087cff]">
                 Responsive
@@ -574,6 +551,43 @@ export default function Home() {
                 1080 × 1920
               </p>
             </motion.div>
+          </motion.div>
+
+          {/* Testo e CTA: dopo il telefono su mobile, sotto il titolo su desktop */}
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.12 }}
+            className="order-3 lg:col-start-1 lg:row-start-2 lg:self-start"
+          >
+            <p className="mt-1 max-w-2xl text-base leading-7 text-slate-600 sm:mt-7 sm:text-lg sm:leading-8">
+              Progettiamo siti vetrina, e-commerce e gestionali capaci di
+              comunicare meglio, vendere online e semplificare i processi
+              aziendali.
+            </p>
+
+            <div className="mt-6 grid gap-3 sm:mt-8 sm:flex">
+              <MagneticLink href={WHATSAPP_URL} external>
+                Inizia un progetto
+              </MagneticLink>
+              <MagneticLink href="#servizi" variant="outline">
+                Esplora i servizi
+              </MagneticLink>
+            </div>
+
+            <div className="mt-8 hidden grid-cols-2 gap-5 sm:flex sm:gap-8 md:flex">
+              <Counter value={3} suffix="" label="Aree specializzate" />
+              <Counter value={100} suffix="%" label="Responsive" />
+              <Counter value={1} suffix="" label="Partner digitale" />
+            </div>
+
+            <a
+              href="#servizi"
+              className="mt-8 inline-flex items-center gap-3 text-sm font-bold text-slate-500 transition hover:text-[#087cff] sm:mt-12"
+            >
+              Scopri come lavoriamo
+              <ChevronDown className="h-4 w-4 animate-bounce" />
+            </a>
           </motion.div>
         </div>
       </section>
