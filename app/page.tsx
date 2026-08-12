@@ -116,6 +116,7 @@ const projects = [
     status: "Online",
     url: "https://www.made3dstudio.it/",
     domain: "made3dstudio.it",
+    image: "/made3d.png",
     description:
       "Una presenza digitale dedicata alla stampa 3D, alla progettazione e alla prototipazione, con servizi e contenuti organizzati in modo chiaro.",
     visualTitle: "MADE 3D",
@@ -129,6 +130,7 @@ const projects = [
     status: "Online",
     url: "https://www.lmtdmusic.it/",
     domain: "lmtdmusic.it",
+    image: "/lmtd.png",
     description:
       "Un sito dal carattere editoriale e contemporaneo per raccontare artisti, release, highlights ed eventi di una realtà musicale.",
     visualTitle: "LMTD",
@@ -142,6 +144,7 @@ const projects = [
     status: "In costruzione",
     url: "https://www.depagelgroup.it/",
     domain: "depagelgroup.it",
+    image: "/depagel.png",
     description:
       "Progetto corporate dedicato a Depagel Group. Il sito è attualmente in costruzione e mostra un'anteprima del lavoro in fase di sviluppo.",
     visualTitle: "Depagel",
@@ -805,61 +808,42 @@ export default function Home() {
                 className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.065] shadow-[0_28px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:rounded-[2.5rem]"
               >
                 <div
-                  className="relative h-[290px] overflow-hidden border-b border-white/10 sm:h-[330px]"
+                  className="relative h-[290px] overflow-hidden border-b border-white/10 bg-[#06172d] sm:h-[330px]"
                   style={{
-                    background: `radial-gradient(circle at 75% 25%, ${project.glow}, transparent 34%), linear-gradient(145deg, #061a32 0%, #031326 52%, #071b35 100%)`,
+                    boxShadow: `inset 0 0 80px ${project.glow}`,
                   }}
                 >
-                  <div className="absolute -right-16 -top-20 h-60 w-60 rounded-full border border-white/10" />
-                  <div className="absolute -bottom-20 -left-12 h-52 w-52 rounded-full border border-white/[0.08]" />
+                  <motion.div
+                    className="absolute inset-0"
+                    whileHover={{ scale: 1.035 }}
+                    transition={{ duration: 0.55, ease: "easeOut" }}
+                  >
+                    <Image
+                      src={project.image}
+                      alt={`Screenshot del sito ${project.title}`}
+                      fill
+                      sizes="(max-width: 1023px) 100vw, 33vw"
+                      className="object-cover object-top"
+                    />
+                  </motion.div>
 
-                  <div className="absolute inset-x-5 top-5 overflow-hidden rounded-[1.35rem] border border-white/15 bg-[#07111d]/90 shadow-2xl sm:inset-x-7 sm:top-7">
-                    <div className="flex h-11 items-center gap-2 border-b border-white/10 bg-white/[0.06] px-4">
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#ff605c]" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd44]" />
-                      <span className="h-2.5 w-2.5 rounded-full bg-[#00ca4e]" />
-                      <div className="ml-2 min-w-0 flex-1 rounded-lg bg-white/[0.07] px-3 py-1.5 text-center text-[10px] font-semibold tracking-wide text-slate-400 sm:text-xs">
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#031326]/55 via-transparent to-black/5" />
+
+                  <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3 sm:bottom-5 sm:left-5 sm:right-5">
+                    <div className="min-w-0 rounded-xl border border-white/15 bg-[#031326]/75 px-3 py-2 backdrop-blur-md">
+                      <p className="truncate text-[10px] font-black uppercase tracking-[0.16em] text-[#8fcfff]">
+                        Live preview
+                      </p>
+                      <p className="mt-0.5 truncate text-xs font-bold text-white sm:text-sm">
                         {project.domain}
-                      </div>
+                      </p>
                     </div>
 
-                    <div className="relative flex min-h-[185px] flex-col justify-between overflow-hidden p-5 sm:min-h-[215px] sm:p-6">
-                      <div
-                        className="absolute -right-10 top-4 h-36 w-36 rounded-full opacity-25 blur-2xl"
-                        style={{ backgroundColor: project.accent }}
-                      />
-
-                      <div className="relative">
-                        <div
-                          className="mb-4 h-1 w-12 rounded-full transition-all duration-500 group-hover:w-24"
-                          style={{ backgroundColor: project.accent }}
-                        />
-                        <p className="text-[11px] font-black uppercase tracking-[0.22em] text-slate-400">
-                          Project preview
-                        </p>
-                        <p className="mt-3 text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl">
-                          {project.visualTitle}
-                        </p>
-                        <p className="mt-2 text-xs font-semibold text-slate-400 sm:text-sm">
-                          {project.visualSubtitle}
-                        </p>
-                      </div>
-
-                      <div className="relative mt-5 grid grid-cols-3 gap-2">
-                        {[0, 1, 2].map((item) => (
-                          <div
-                            key={item}
-                            className="h-8 rounded-lg border border-white/[0.07] bg-white/[0.045]"
-                          />
-                        ))}
-                      </div>
-                    </div>
+                    <span
+                      className="h-3 w-3 shrink-0 rounded-full shadow-[0_0_18px_currentColor]"
+                      style={{ backgroundColor: project.accent, color: project.accent }}
+                    />
                   </div>
-
-                  <div
-                    className="absolute bottom-4 right-5 h-12 w-12 rounded-2xl opacity-40 blur-xl transition duration-500 group-hover:scale-150 sm:bottom-5 sm:right-7"
-                    style={{ backgroundColor: project.accent }}
-                  />
                 </div>
 
                 <div className="p-6 sm:p-7">
