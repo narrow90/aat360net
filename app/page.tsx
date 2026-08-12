@@ -109,6 +109,48 @@ const benefits = [
   "Struttura scalabile",
 ];
 
+const projects = [
+  {
+    title: "Made 3D Studio",
+    category: "Sito aziendale",
+    status: "Online",
+    url: "https://www.made3dstudio.it/",
+    domain: "made3dstudio.it",
+    description:
+      "Una presenza digitale dedicata alla stampa 3D, alla progettazione e alla prototipazione, con servizi e contenuti organizzati in modo chiaro.",
+    visualTitle: "MADE 3D",
+    visualSubtitle: "Stampa 3D · Progettazione · Prototipazione",
+    accent: "#087cff",
+    glow: "rgba(8,124,255,0.35)",
+  },
+  {
+    title: "LMTD Music",
+    category: "Music agency",
+    status: "Online",
+    url: "https://www.lmtdmusic.it/",
+    domain: "lmtdmusic.it",
+    description:
+      "Un sito dal carattere editoriale e contemporaneo per raccontare artisti, release, highlights ed eventi di una realtà musicale.",
+    visualTitle: "LMTD",
+    visualSubtitle: "Music Agency · Artists · Releases · Live",
+    accent: "#7c5cff",
+    glow: "rgba(124,92,255,0.38)",
+  },
+  {
+    title: "Depagel Group",
+    category: "Sito aziendale",
+    status: "In costruzione",
+    url: "https://www.depagelgroup.it/",
+    domain: "depagelgroup.it",
+    description:
+      "Progetto corporate dedicato a Depagel Group. Il sito è attualmente in costruzione e mostra un'anteprima del lavoro in fase di sviluppo.",
+    visualTitle: "Depagel",
+    visualSubtitle: "Made in Italy · Corporate · Coming Soon",
+    accent: "#20a7ff",
+    glow: "rgba(32,167,255,0.34)",
+  },
+];
+
 function MagneticLink({
   href,
   children,
@@ -374,6 +416,7 @@ export default function Home() {
           <nav className="hidden items-center gap-9 text-sm font-bold text-slate-600 md:flex">
             {[
               ["Servizi", "#servizi"],
+              ["Progetti", "#progetti"],
               ["Metodo", "#metodo"],
               ["Contatti", "#contatti"],
             ].map(([label, href]) => (
@@ -420,6 +463,7 @@ export default function Home() {
             <nav className="grid gap-2">
               {[
                 ["Servizi", "#servizi"],
+                ["Progetti", "#progetti"],
                 ["Metodo", "#metodo"],
                 ["Contatti", "#contatti"],
               ].map(([label, href]) => (
@@ -717,6 +761,177 @@ export default function Home() {
       </section>
 
       <section
+        id="progetti"
+        className="relative z-10 overflow-hidden bg-[#031326] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_14%_20%,rgba(8,124,255,0.20),transparent_30%),radial-gradient(circle_at_88%_80%,rgba(43,181,255,0.14),transparent_28%)]" />
+        <div className="absolute inset-0 opacity-[0.045] [background-image:linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] [background-size:82px_82px]" />
+
+        {interactiveBackground && (
+          <motion.div
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 opacity-70"
+            style={{ background: spotlight }}
+          />
+        )}
+
+        <div className="relative mx-auto max-w-[1440px]">
+          <div className="mb-12 grid gap-6 sm:mb-16 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+            <div>
+              <p className="mb-3 text-xs font-black uppercase tracking-[0.28em] text-[#78c9ff] sm:text-sm">
+                Progetti & Demo
+              </p>
+              <h2 className="max-w-4xl text-4xl font-black leading-[0.95] tracking-[-0.05em] text-white sm:text-5xl md:text-6xl">
+                Guarda cosa realizziamo,
+                <span className="block text-[#65bdff]">direttamente online.</span>
+              </h2>
+            </div>
+
+            <p className="max-w-xl text-base leading-7 text-slate-300 sm:text-lg sm:leading-8 lg:justify-self-end">
+              Non solo mockup. Esplora alcuni progetti sviluppati da AAT 360
+              NetworkLab e guarda il risultato direttamente nel browser.
+            </p>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-3">
+            {projects.map((project, index) => (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 36 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.55, delay: index * 0.08 }}
+                whileHover={{ y: -8 }}
+                className="group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.065] shadow-[0_28px_80px_rgba(0,0,0,0.24)] backdrop-blur-xl sm:rounded-[2.5rem]"
+              >
+                <div
+                  className="relative h-[290px] overflow-hidden border-b border-white/10 sm:h-[330px]"
+                  style={{
+                    background: `radial-gradient(circle at 75% 25%, ${project.glow}, transparent 34%), linear-gradient(145deg, #061a32 0%, #031326 52%, #071b35 100%)`,
+                  }}
+                >
+                  <div className="absolute -right-16 -top-20 h-60 w-60 rounded-full border border-white/10" />
+                  <div className="absolute -bottom-20 -left-12 h-52 w-52 rounded-full border border-white/[0.08]" />
+
+                  <div className="absolute inset-x-5 top-5 overflow-hidden rounded-[1.35rem] border border-white/15 bg-[#07111d]/90 shadow-2xl sm:inset-x-7 sm:top-7">
+                    <div className="flex h-11 items-center gap-2 border-b border-white/10 bg-white/[0.06] px-4">
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#ff605c]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#ffbd44]" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-[#00ca4e]" />
+                      <div className="ml-2 min-w-0 flex-1 rounded-lg bg-white/[0.07] px-3 py-1.5 text-center text-[10px] font-semibold tracking-wide text-slate-400 sm:text-xs">
+                        {project.domain}
+                      </div>
+                    </div>
+
+                    <div className="relative flex min-h-[185px] flex-col justify-between overflow-hidden p-5 sm:min-h-[215px] sm:p-6">
+                      <div
+                        className="absolute -right-10 top-4 h-36 w-36 rounded-full opacity-25 blur-2xl"
+                        style={{ backgroundColor: project.accent }}
+                      />
+
+                      <div className="relative">
+                        <div
+                          className="mb-4 h-1 w-12 rounded-full transition-all duration-500 group-hover:w-24"
+                          style={{ backgroundColor: project.accent }}
+                        />
+                        <p className="text-[11px] font-black uppercase tracking-[0.22em] text-slate-400">
+                          Project preview
+                        </p>
+                        <p className="mt-3 text-4xl font-black tracking-[-0.05em] text-white sm:text-5xl">
+                          {project.visualTitle}
+                        </p>
+                        <p className="mt-2 text-xs font-semibold text-slate-400 sm:text-sm">
+                          {project.visualSubtitle}
+                        </p>
+                      </div>
+
+                      <div className="relative mt-5 grid grid-cols-3 gap-2">
+                        {[0, 1, 2].map((item) => (
+                          <div
+                            key={item}
+                            className="h-8 rounded-lg border border-white/[0.07] bg-white/[0.045]"
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className="absolute bottom-4 right-5 h-12 w-12 rounded-2xl opacity-40 blur-xl transition duration-500 group-hover:scale-150 sm:bottom-5 sm:right-7"
+                    style={{ backgroundColor: project.accent }}
+                  />
+                </div>
+
+                <div className="p-6 sm:p-7">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full border border-[#087cff]/25 bg-[#087cff]/10 px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] text-[#77c7ff]">
+                      Progetto AAT 360
+                    </span>
+                    <span
+                      className={`rounded-full px-3 py-1.5 text-[10px] font-black uppercase tracking-[0.16em] ${
+                        project.status === "Online"
+                          ? "bg-emerald-400/10 text-emerald-300"
+                          : "bg-amber-400/10 text-amber-300"
+                      }`}
+                    >
+                      {project.status}
+                    </span>
+                  </div>
+
+                  <p className="mt-6 text-xs font-black uppercase tracking-[0.22em] text-[#78c9ff]">
+                    {project.category}
+                  </p>
+                  <h3 className="mt-2 text-3xl font-black tracking-tight text-white sm:text-[2.15rem]">
+                    {project.title}
+                  </h3>
+
+                  <p className="mt-4 min-h-[112px] text-sm leading-7 text-slate-300 sm:text-[0.95rem]">
+                    {project.description}
+                  </p>
+
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-6 flex h-12 items-center justify-between rounded-2xl border border-white/10 bg-white/[0.07] px-5 text-sm font-extrabold text-white transition duration-300 hover:border-[#087cff]/40 hover:bg-[#087cff]"
+                  >
+                    <span>
+                      {project.status === "Online"
+                        ? "Visita il sito"
+                        : "Visita l’anteprima"}
+                    </span>
+                    <ExternalLink className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                  </a>
+                </div>
+              </motion.article>
+            ))}
+          </div>
+
+          <div className="mt-10 flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/[0.05] p-6 sm:flex-row sm:items-center sm:justify-between sm:p-8">
+            <div>
+              <p className="text-xs font-black uppercase tracking-[0.22em] text-[#78c9ff]">
+                Nuove demo in arrivo
+              </p>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-300 sm:text-base">
+                Questa raccolta potrà essere aggiornata con nuove demo
+                navigabili e altri progetti realizzati.
+              </p>
+            </div>
+
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-12 shrink-0 items-center justify-center gap-2 rounded-2xl bg-white px-5 text-sm font-extrabold text-[#06172d] transition hover:-translate-y-0.5 hover:bg-[#eef6ff]"
+            >
+              Hai un progetto?
+              <ArrowRight className="h-4 w-4" />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
         id="metodo"
         className="relative z-10 overflow-hidden bg-white px-4 py-16 text-[#071a33] sm:px-6 sm:py-24 lg:px-8 lg:py-32"
       >
@@ -880,6 +1095,9 @@ export default function Home() {
           <div className="grid gap-2 text-sm font-semibold text-slate-300">
             <a href="#servizi" className="hover:text-white">
               Servizi
+            </a>
+            <a href="#progetti" className="hover:text-white">
+              Progetti
             </a>
             <a href="#metodo" className="hover:text-white">
               Metodo
